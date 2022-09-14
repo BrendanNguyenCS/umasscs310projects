@@ -1,1 +1,2 @@
 # umasscs310projects
+This is a remote repository for all my UMass Boston Advanced Algorithms (CS310) class projects and other associated files. This repository contains my solutions for each of the programming assignments (pa's). View at your own discretion.
