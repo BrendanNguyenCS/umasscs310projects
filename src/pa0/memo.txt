@@ -1,0 +1,47 @@
+Brendan Nguyen Responses
+
+1. I found that these programs were quite straightforward. I haven't polished up on my Java recently due to the amount
+of time since my last Java course and also my full time summer internship that codes in a different language. I needed
+familiarize myself with the different objects and their methods that were using during this assignment. I used the IntelliJ
+IDE on my local Windows laptop. The majority of the issues I faced during this assignment was related to setting up my IDE 
+and command line. I recently had to factory reset my laptop to fix battery issues so everything was reset. After installing the
+java JDK via Intellij, I didn't realize that I needed to set up the environment variables on my system in order to use the java 
+and javac command in the command line. After fixing this, I was able to compile my files locally. I also ran into issues with
+setting up the file structure. Prior to the start of the semester, I had created a private Git repo so I could keep all of my code
+for this class. However, when I tried to add the files (mirroring the given structure from the assignment), java wouldn't compile
+(I could also tell something was off since the built-in intellisense wasn't recognizing the commands in the IDE). I had to create
+the java project separately and then attach the git remote branch to this directory. I was able to fix all of my problems and
+everything works now.
+
+2. For LineUsage.addObservation, the time complexity is defined by the time complexity of the containsKey method that is called.
+This containsKey method just checks every key-value pair meaning that the time complexity is O(n). For LineUsage.findMaxUsage,
+the time complexity can be determined by the for-loop. Because the for-loop loops through each entry in the hashmap, the time
+complexity of this method is also O(n). LineReport.generateReport also have a for-loop for searching through the LineUsage array,
+meaning that the time complexity is O(n). Overall, the time complexity would be O(n).
+
+3. 
+
+C:\Users\brend\School Git Repos\umasscs310projects>cd src
+C:\Users\brend\School Git Repos\umasscs310projects\src>javac -d ../classes pa0/*.java
+C:\Users\brend\School Git Repos\umasscs310projects\src>cd ../
+C:\Users\brend\School Git Repos\umasscs310projects>tree /f
+
+C:.
+│   .gitignore
+│   README.md
+│   umasscs310projects.iml
+│
+├───.idea
+│
+├───classes
+│   └───pa0
+│           LineReport.class
+│           LineUsage.class
+│           Usage.class
+│
+└───src
+    └───pa0
+            LineReport.java
+            LineUsage.java
+            memo.txt
+            Usage.java
