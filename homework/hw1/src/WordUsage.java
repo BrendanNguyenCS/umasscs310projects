@@ -1,3 +1,5 @@
+// Homework 1 Question 9
+
 public class WordUsage {
     private final String word; // the current word being tracked
     private int count; // the number of times this word has been used

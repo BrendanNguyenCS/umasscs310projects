@@ -1,3 +1,5 @@
+// Homework 1 Question 8
+
 public class CombinationLock {
     private int combination; // The lock's combination
     private boolean isOpen; // The lock's lock status
