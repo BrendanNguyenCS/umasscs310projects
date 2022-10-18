@@ -47,9 +47,14 @@ public class MarkovModel {
         S = uniqueLtrs.size();
     }
     public double laplace(String s) {
+        // Get shortened substring to check map of size k
         String shtString = s.substring(0, k);
-        int shtCount = substring1.get(shtString) != null ? substring1.get(shtString) : 0;
-        int lngCount = substring2.get(s) != null ? substring2.get(s) : 0;
+        int shtCount = substring1.get(shtString) != null
+                ? substring1.get(shtString)
+                : 0;
+        int lngCount = substring2.get(s) != null
+                ? substring2.get(s)
+                : 0;
         return (lngCount + 1.0)/(shtCount + S);
     }
 
