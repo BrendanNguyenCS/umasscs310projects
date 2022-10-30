@@ -1,4 +1,5 @@
 // Homework 1 Question 8
+package hw1;
 
 public class CombinationLock {
     private int a, b, c; // The lock's combination

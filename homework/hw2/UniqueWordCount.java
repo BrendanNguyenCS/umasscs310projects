@@ -1,4 +1,5 @@
 // Homework 2 Question 5c
+package hw2;
 
 import java.io.File;
 import java.io.FileNotFoundException;

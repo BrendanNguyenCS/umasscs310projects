@@ -1,4 +1,5 @@
 // Homework 1 Question 5
+package hw1;
 
 public class MysterySum {
     public static void main(String[] args) {

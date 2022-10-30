@@ -1,4 +1,5 @@
 // Homework 1 Question 9
+package hw1;
 
 public class WordUsage {
     private final String word; // the current word being tracked

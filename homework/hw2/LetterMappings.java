@@ -1,4 +1,5 @@
 // Homework 2 Question 3
+package hw2;
 
 public class LetterMappings {
     public static void main(String[] args) {
