@@ -6,8 +6,8 @@ import java.util.HashMap;
 // LineUsageData.java: Handle one line's data, using a Map
 public class LineUsage {
 
-    private HashMap<String, Integer> lines;
-    private int count;
+    private final HashMap<String, Integer> lines;
+    private final int count;
 
     // Constructor
     public LineUsage() {

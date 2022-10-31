@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.TreeMap;
 
 public class MarkovModel {
-    private int k; // Order of model
-    private int S; // Size of alphabet
-    private TreeMap<String, Integer> substring1; // Map of substrings of size k
-    private TreeMap<String, Integer> substring2; // Map of substrings of size k+1
+    private final int k; // Order of model
+    private final int S; // Size of alphabet
+    private final TreeMap<String, Integer> substring1; // Map of substrings of size k
+    private final TreeMap<String, Integer> substring2; // Map of substrings of size k+1
 
     public MarkovModel(int k, String s) {
         // Initialize known fields
@@ -28,19 +28,17 @@ public class MarkovModel {
             // size k+1 substring
             String longString = circularString.substring(i, i + k + 1);
 
-            // update if substring exists in map
+            // update if substring exists in map, add to map otherwise
             if (substring1.containsKey(shortString)) {
                 substring1.replace(shortString, substring1.get(shortString) + 1);
             } else {
-                // add to map otherwise
                 substring1.put(shortString, 1);
             }
 
-            // update if substring exists in map
+            // update if substring exists in map, add to map otherwise
             if (substring2.containsKey(longString)) {
                 substring2.replace(longString, substring2.get(longString) + 1);
             } else {
-                // add to map otherwise
                 substring2.put(longString, 1);
             }
         }

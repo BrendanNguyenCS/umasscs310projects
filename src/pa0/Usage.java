@@ -4,7 +4,7 @@ package pa0;
 public class Usage {
 
     // user: the username of this user
-    private String user;
+    private final String user;
     // count: the number of times this user has been seen on this line
     private int count;
 

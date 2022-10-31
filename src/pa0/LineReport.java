@@ -6,7 +6,7 @@ import java.util.*;
 
 public class LineReport {
     // lines: array for the terminals in the log file
-    private LineUsage[] lines;
+    private final LineUsage[] lines;
 
     // Constructor
     public LineReport() {
