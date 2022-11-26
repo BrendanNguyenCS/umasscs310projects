@@ -1,35 +1,14 @@
 package pa2;
 
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Stack;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.SymbolGraph;
-import edu.princeton.cs.algs4.BreadthFirstPaths;
+import edu.princeton.cs.algs4.*;
 
 /**
- *  The {@code DegreesOfSeparation} class provides a client for finding
- *  the degree of separation between one distinguished individual and
- *  every other individual in a social network.
- *  As an example, if the social network consists of actors in which
- *  two actors are connected by a link if they appeared in the same movie,
- *  and Kevin Bacon is the distinguished individual, then the client
- *  computes the Kevin Bacon number of every actor in the network.
- *  <p>
- *  The running time is proportional to the number of individuals and
- *  connections in the network. If the connections are given implicitly,
- *  as in the movie network example (where every two actors are connected
- *  if they appear in the same movie), the efficiency of the algorithm
- *  is improved by allowing both movie and actor vertices and connecting
- *  each movie to all of the actors that appear in that movie.
- *  <p>
- *  For additional documentation,
- *  see <a href="https://algs4.cs.princeton.edu/41graph">Section 4.1</a> of
- *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *  The {@code DegreesOfSeparationBFS} class is a modified implementation
+ *  of Robert Sedgewick and Kevin Wayne's algs4 class {@code DegreesOfSeparation}.
+ *  This class gets an actor's bacon number and the path between an actor
+ *  and the source actor.
  *
- *  @author Robert Sedgewick
- *  @author Kevin Wayne
+ *  @author Brendan Nguyen
  */
 public class DegreesOfSeparationBFS {
     private SymbolGraph sg;
@@ -127,39 +106,14 @@ public class DegreesOfSeparationBFS {
 
         // Print the Bacon diagram
         //baconGraph.printBaconDiagram();
-        /*int i, no_args = args.length;
+        int i, no_args = args.length;
         // Get degrees of separation
         for(i=3;i<no_args;i++) {
             baconGraph.baconNumber(args[i]);
             Stack<Integer> path = baconGraph.graphPath(args[i]);
             baconGraph.printPath(path);
-        }*/
+        }
     }
 }
-
-/******************************************************************************
- *  Copyright 2002-2016, Robert Sedgewick and Kevin Wayne.
- *
- *  This file is part of algs4.jar, which accompanies the textbook
- *
- *      Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
- *      Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
- *      http://algs4.cs.princeton.edu
- *
- *
- *  algs4.jar is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  algs4.jar is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
- ******************************************************************************/
-
 
 
