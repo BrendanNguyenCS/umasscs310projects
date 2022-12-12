@@ -25,42 +25,6 @@ public class Grid {
         width = grid[0].length;
     }
 
-    /**
-     * Main method, creates a Grid, then asks it for the size of the group
-     * containing the given point.
-     */
-    public static void main(String[] args) {
-        // Check arguments here.
-
-        // Usage: java Grid 3 7 to search from (3, 7), top occupied square
-        // of L-shaped group.
-        // -all to print all sets.
-
-        boolean[][] gridData = {
-                { false, false, false, false, false, false, false, false,
-                        false, true },
-                { false, false, false, true, true, false, false, false, false,
-                        true },
-                { false, false, false, false, false, false, false, false,
-                        false, false },
-                { false, false, false, false, true, false, false, true, false,
-                        false },
-                { false, false, false, true, false, false, false, true, false,
-                        false },
-                { false, false, false, false, false, false, false, true, true,
-                        false },
-                { false, false, false, false, true, true, false, false, false,
-                        false },
-                { false, false, false, false, false, false, false, false,
-                        false, false },
-                { false, false, false, false, false, false, false, false,
-                        false, false },
-                { false, false, false, false, false, false, false, false,
-                        false, false } };
-        // Other stuff here.
-
-    }
-
     public void printAllGroups()
     {
         for(Set<Spot> g:allGroups) {
