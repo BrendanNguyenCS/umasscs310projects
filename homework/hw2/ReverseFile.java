@@ -1,11 +1,12 @@
-// Homework 2 Question 5a
 package hw2;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
+/**
+ * A class which prints the lines of a file in reverse order
+ * Homework 2 Question 5a
+ */
 public class ReverseFile {
     public static void main(String[] args) throws FileNotFoundException {
         // Read file from command line

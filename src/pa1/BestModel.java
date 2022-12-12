@@ -1,31 +1,57 @@
 package pa1;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.MaxPQ;
+import edu.princeton.cs.algs4.*;
 import java.lang.Math;
 
 public class BestModel{
-    private final int order; // Order of best model
-    private final MarkovModel model1; // Training Markov model
-    private final MarkovModel model2; // Training Markov model
 
+    /**
+     * The order of the current best model
+     */
+    private final int order;
+    /**
+     * The first training Markov model
+     */
+    private final MarkovModel model1;
+    /**
+     * The second training Markov model
+     */
+    private final MarkovModel model2;
+
+    // Constructor
     public BestModel(int order, String s1, String s2) {
         this.order = order;
         model1 = new MarkovModel(order, s1.replaceAll("\\s", " "));
         model2 = new MarkovModel(order, s2.replaceAll("\\s", " "));
     }
 
-    // Returns the first Markov test model
+    /**
+     * @return the field {@link #model1}
+     */
     public MarkovModel getModel1() {
-        return this.model1;
+        return model1;
     }
 
-    // Returns the second Markov test model
+    /**
+     * @return the field {@link #model2}
+     */
     public MarkovModel getModel2() {
-        return this.model2;
+        return model2;
     }
 
-    // Calculates and prints out total log likelihoods
+    /**
+     * @return the field {@link #order}
+     */
+    public int getOrder() {
+        return order;
+    }
+
+    /**
+     * Calculates and prints out the total log likelihoods
+     * @param q a max priority queue
+     * @param text the text to scan
+     * @param filename the file being scanned
+     */
     public void printAverages(MaxPQ<DiffModel> q, String text, String filename) {
         double total1 = 0.0, total2 = 0.0;
         for(int i = 0; i < text.length() / 2; i++) {
@@ -51,7 +77,10 @@ public class BestModel{
         System.out.printf("%s %.4f %.4f %.4f\n", filename, avg1, avg2, avgDifference);
     }
 
-    // Prints out top 10 most likely substrings and their stats
+    /**
+     * Prints out the top 10 most likely substrings and their stats
+     * @param q a max priority queue
+     */
     public void printLikelihoods(MaxPQ<DiffModel> q) {
         for (int i = 0; i < 10; i++) {
             DiffModel max = q.delMax();
@@ -59,13 +88,29 @@ public class BestModel{
         }
     }
 
-    // Used to compare substring likelihoods
+    /**
+     * A class used to compare substring likelihoods
+     */
     private static class DiffModel implements Comparable<DiffModel> {
-        private final String substring; // The current difference model's substring
-        private final double log1; // The log likelihood for first Markov model
-        private final double log2; // The log likelihood for second Markov model
-        private final double logDifference; // Difference in log likelihoods
 
+        /**
+         * The current difference model's substring
+         */
+        private final String substring;
+        /**
+         * The log likelihood for the first Markov model
+         */
+        private final double log1;
+        /**
+         * The log likelihood for the second Markov model
+         */
+        private final double log2;
+        /**
+         * The difference in log likelihoods
+         */
+        private final double logDifference;
+
+        // Constructor
         private DiffModel(String substring, double p1, double p2) {
             this.substring = substring;
             this.log1 = p1;
@@ -73,14 +118,27 @@ public class BestModel{
             this.logDifference = log1 - log2;
         }
 
+        /**
+         * @return the field {@link #logDifference}
+         */
         public double logDifference() {
             return logDifference;
         }
 
+        /**
+         * Compares the log differences of this and another {@link DiffModel}
+         * @param other the object to be compared
+         * @return 1 if this > other, -1 if this < other, 0 otherwise
+         */
         public int compareTo(DiffModel other) {
             return Double.compare(Math.abs(this.logDifference), Math.abs(other.logDifference));
         }
 
+        /**
+         * Checks for equality of the log differences of two {@link DiffModel}s
+         * @param other the object to be checked against
+         * @return {@code true} if the log differences are equal, {@code false} otherwise
+         */
         public boolean equals (DiffModel other) {
             if (other == null) {
                 return false;
@@ -88,6 +146,9 @@ public class BestModel{
             return this.logDifference() == other.logDifference();
         }
 
+        /**
+         * @return the string representation of the {@link DiffModel}
+         */
         public String toString() {
             return String.format("%s %.4f %.4f %.4f", substring, log1, log2, logDifference);
         }

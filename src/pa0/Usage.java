@@ -1,11 +1,17 @@
 package pa0;
-// One user's record on one line: how many times
-// this user has been seen on this line
+
+/**
+ * One user's record on one line: how many times this user has been seen on this line
+ */
 public class Usage {
 
-    // user: the username of this user
+    /**
+     * The username of this user
+     */
     private final String user;
-    // count: the number of times this user has been seen on this line
+    /**
+     * The number of times this user has been seen on this line
+     */
     private int count;
 
     // Constructor
@@ -14,17 +20,23 @@ public class Usage {
         this.count = count;
     }
 
-    // sets the number of times a user has accessed terminal
+    /**
+     * @param x the new value for {@link #count}
+     */
     public void setCount(int x) {
         count = x;
     }
 
-    // returns username for current usage user
+    /**
+     * @return the field {@link #user}
+     */
     public String getUser() {
         return this.user;
     }
 
-    // returns the number of usages for this user
+    /**
+     * @return the field {@link #count}
+     */
     public int getCount() {
         return this.count;
     }

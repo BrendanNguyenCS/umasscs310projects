@@ -3,14 +3,25 @@ package pa2;
 import edu.princeton.cs.algs4.*;
 
 public class DijkstraTieSP {
-    private double[] distTo;          // distTo[v] = distance  of shortest s->v path
-    private DirectedEdge[] edgeTo;    // edgeTo[v] = last edge on shortest s->v path
-    private IndexMinPQ<Double> pq;    // priority queue of vertices
+
+    /**
+     * Array which holds the distances of vertices to the source
+     * distTo[v] = distance  of shortest s->v path
+     */
+    private double[] distTo;
+    /**
+     * Array which holds the last edge of the shortest path between vertices and the source
+     * edgeTo[v] = last edge on shortest s->v path
+     */
+    private DirectedEdge[] edgeTo;
+    /**
+     * The priority queue of the vertices
+     */
+    private IndexMinPQ<Double> pq;
 
     /**
      * Computes a shortest-paths tree from the source vertex {@code s} to every other
      * vertex in the edge-weighted digraph {@code G}.
-     *
      * @param  G the edge-weighted digraph
      * @param  s the source vertex
      * @throws IllegalArgumentException if an edge weight is negative
@@ -45,6 +56,11 @@ public class DijkstraTieSP {
     }
 
     // relax edge e and update pq if changed
+
+    /**
+     * Relax edge {@param e} and update {@link #pq} if changed
+     * @param e the edge to relax
+     */
     private void relax(DirectedEdge e) {
         int v = e.from(), w = e.to();
         if (distTo[w] > distTo[v] + e.weight()) {

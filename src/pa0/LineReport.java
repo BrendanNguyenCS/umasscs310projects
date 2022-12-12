@@ -1,11 +1,13 @@
 package pa0;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.*;
 
 public class LineReport {
-    // lines: array for the terminals in the log file
+
+    /**
+     * Array for the terminals in the log file
+     */
     private final LineUsage[] lines;
 
     // Constructor
@@ -16,7 +18,11 @@ public class LineReport {
         }
     }
 
-    // read input data, put facts into lines array
+    /**
+     * Reads the input data from the file, puts facts into {@link #lines} array
+     * @param fname the file name
+     * @throws FileNotFoundException unless the file exists
+     */
     void loadData(String fname) throws FileNotFoundException {
         // initialize file and scanner
         File file = new File(fname);
@@ -34,7 +40,9 @@ public class LineReport {
         }
     }
 
-    // given loaded lines array, generate report on lines
+    /**
+     * Given the loaded {@link #lines} array, generates the report on {@link #lines}
+     */
     void generateReport() {
         // print header line
         System.out.println("Terminal\tMost Common User\tCount");

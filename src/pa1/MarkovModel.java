@@ -1,14 +1,27 @@
 package pa1;
 
-import java.util.HashSet;
-import java.util.TreeMap;
+import java.util.*;
 
 public class MarkovModel {
-    private final int k; // Order of model
-    private final int S; // Size of alphabet
-    private final TreeMap<String, Integer> substring1; // Map of substrings of size k
-    private final TreeMap<String, Integer> substring2; // Map of substrings of size k+1
 
+    /**
+     * The order of the Markov model
+     */
+    private final int k;
+    /**
+     * The size of the alphabet to test
+     */
+    private final int S;
+    /**
+     * The map of substrings of size k
+     */
+    private final TreeMap<String, Integer> substring1;
+    /**
+     * The map of substrings of size k+1
+     */
+    private final TreeMap<String, Integer> substring2;
+
+    // Constructor
     public MarkovModel(int k, String s) {
         // Initialize known fields
         this.k = k;
@@ -44,6 +57,12 @@ public class MarkovModel {
         }
         S = uniqueLtrs.size();
     }
+
+    /**
+     * Calculates the probability of a string
+     * @param s the string
+     * @return the decimal representation of the probability
+     */
     public double laplace(String s) {
         // Get shortened substring to check map of size k
         String shtString = s.substring(0, k);
@@ -56,17 +75,23 @@ public class MarkovModel {
         return (lngCount + 1.0)/(shtCount + S);
     }
 
-    // Returns the order of the Markov model
+    /**
+     * @return the field {@link #k}
+     */
     public int getK() {
-        return this.k;
+        return k;
     }
 
-    // Returns the size of the alphabet
+    /**
+     * @return the field {@link #S}
+     */
     public int getS() {
-        return this.S;
+        return S;
     }
 
-    // Returns the string representation of the MarkovModel
+    /**
+     * @return the string representation of the Markov model
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("S = " + this.S);

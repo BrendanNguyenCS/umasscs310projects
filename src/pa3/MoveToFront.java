@@ -3,6 +3,9 @@ package pa3;
 import edu.princeton.cs.algs4.*;
 import java.util.LinkedList;
 
+/**
+ * A class that encapsulates ASCII shifting
+ */
 public class MoveToFront {
 
     /**

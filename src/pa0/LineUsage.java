@@ -1,21 +1,26 @@
 package pa0;
-// Import packages as needed
 
 import java.util.HashMap;
 
-// LineUsageData.java: Handle one line's data, using a Map
+/**
+ * LineUsage.java: Handle one line's data, using a Map
+ */
 public class LineUsage {
 
+    /**
+     * The map that encapsulates the data for this line
+     */
     private final HashMap<String, Integer> lines;
-    private final int count;
 
     // Constructor
     public LineUsage() {
         this.lines = new HashMap<String, Integer>();
-        count = 1;
     }
 
-    // add one sighting of a user on this line
+    /**
+     * Adds one sighting of a user on this line
+     * @param username the user sighting to be added to this line
+     */
     public void addObservation(String username) {
         // if username key exists, add 1 to existing count
         if (lines.containsKey(username)) {
@@ -26,7 +31,10 @@ public class LineUsage {
         }
     }
 
-    // find the user with the most sightings on this line
+    /**
+     * Finds the user with the most sightings on this line
+     * @return a {@link Usage} object that contains the user and their count
+     */
     public Usage findMaxUsage() {
         // temp variables to keep track of the user with max usage
         int maxCount = 0;

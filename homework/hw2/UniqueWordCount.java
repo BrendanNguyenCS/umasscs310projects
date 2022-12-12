@@ -1,11 +1,12 @@
-// Homework 2 Question 5c
 package hw2;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
+/**
+ * A class which prints all the different words in a file and their counts
+ * Homework 2 Question 5c
+ */
 public class UniqueWordCount {
     public static void main(String[] args) throws FileNotFoundException {
         // read file from command line

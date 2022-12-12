@@ -6,6 +6,7 @@ import java.util.*;
  * Class to demonstrate greedy algorithms. Skeleton.
  */
 public class Grid {
+
     private boolean[][] grid = null;
     private ArrayList<Set<Spot>> allGroups; // All groups
     private final int height; // The height of the grid
@@ -33,6 +34,7 @@ public class Grid {
             System.out.println("");
         }
     }
+
     // The best way IMO to calculate the number of groups is to set up a matrix of integers and
     // for each non-0 entry calculate the group it's in.
     public ArrayList<Set<Spot>> calcAllGroups() {
@@ -172,9 +174,11 @@ public class Grid {
      * Nested class to represent a filled spot in the grid
      */
     public static class Spot {
+
         int i;
         int j;
         int group;
+
         /**
          * Constructor for a Spot
          *
@@ -217,8 +221,11 @@ public class Grid {
         public void setGroup(int g) {group = g;}
 
         public int getI() {return i;}
+
         public int getJ() {return j;}
+
         public int getGroup() {return group;}
+
         /**
          * Returns a String representing this Spot, just the coordinates. You can add group if you want.
          */
