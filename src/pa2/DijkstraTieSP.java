@@ -57,8 +57,16 @@ public class DijkstraTieSP {
         }
         // if they are equal
         else if (distTo[w] == distTo[v] + e.weight()) {
-            if (edgeTo[w].from() > edgeTo[v].from()) {
-                // select smaller number of edges
+            // get size of paths
+            int countPathW = 0, countPathV = 0;
+            for (DirectedEdge d : pathTo(w)) {
+                countPathW++;
+            }
+            for (DirectedEdge d : pathTo(v)) {
+                countPathV++;
+            }
+
+            if (countPathW > countPathV) {
                 edgeTo[w] = e;
             }
         }

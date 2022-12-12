@@ -1,0 +1,5 @@
+I used 3 extension days.
+
+1-3. (I didn't get to do Match and Path of this assignment)
+
+4. The time complexity for both encode and decode is O(R*n). We can see this because the while loop within the functions would be called n times. Within the while loop, the only function call with a non-constant run time complexity is the indexOf method for the LinkedList. Therefore, the overall time complexity for the while loop is O(R*n). While the helper method I created to initialize the ASCII LinkedList has a time complexity of O(R), the overall complexity of the entire method can be simplified to O(R*n). The space complexity of the methods is defined by the size of the ASCII LinkedList. Because we are adding elements back into the list every time we remove an element, the space complexity would be unchanged. Therefore, the space complexity is linear to the number of elements, or O(R).
