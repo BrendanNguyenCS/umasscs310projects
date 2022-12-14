@@ -1,7 +1,8 @@
 package pa3;
 
-import java.util.*;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.In;
+
+import java.util.ArrayList;
 
 public class Coins {
 
@@ -21,11 +22,6 @@ public class Coins {
      * Keeps track of the last coin used when tracking minimum coins
      */
     private int[] R;
-    /**
-     * A map to track all of the minimum coins
-     * (This was an attempt to debug the output easier)
-     */
-    private HashMap<Integer, Integer> map;
 
     // Constructor
     public Coins(String filename) {
@@ -42,7 +38,6 @@ public class Coins {
         M[0] = 0;
         R = new int[amount + 1];
         R[0] = 1;
-        map = new HashMap<>();
     }
 
     /**
@@ -82,9 +77,6 @@ public class Coins {
             }
             M[i] = min;
             R[i] = newCoin;
-            if (denominations.contains(newCoin)) {
-                map.put(newCoin, min);
-            }
         }
         return M[total];
     }
@@ -100,7 +92,6 @@ public class Coins {
             if (i == coin) count++;
         }
         return count > M[amount] ? 0 : count;
-        //return map.get(coin);
     }
 
     /**

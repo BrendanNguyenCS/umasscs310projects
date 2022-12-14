@@ -55,8 +55,6 @@ public class DijkstraTieSP {
         assert check(G, s);
     }
 
-    // relax edge e and update pq if changed
-
     /**
      * Relax edge {@param e} and update {@link #pq} if changed
      * @param e the edge to relax
@@ -102,7 +100,6 @@ public class DijkstraTieSP {
 
     /**
      * Returns true if there is a path from the source vertex {@code s} to vertex {@code v}.
-     *
      * @param  v the destination vertex
      * @return {@code true} if there is a path from the source vertex
      *         {@code s} to vertex {@code v}; {@code false} otherwise
@@ -115,7 +112,6 @@ public class DijkstraTieSP {
 
     /**
      * Returns a shortest path from the source vertex {@code s} to vertex {@code v}.
-     *
      * @param  v the destination vertex
      * @return a shortest path from the source vertex {@code s} to vertex {@code v}
      *         as an iterable of edges, and {@code null} if no such path
@@ -192,7 +188,6 @@ public class DijkstraTieSP {
 
     /**
      * Unit tests the {@code DijkstraSP} and {@code DijsktraTieSP} data types.
-     *
      * @param args the command-line arguments
      */
     public static void main(String[] args) {

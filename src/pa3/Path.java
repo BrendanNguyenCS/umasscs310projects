@@ -10,7 +10,7 @@ public class Path {
         return row;
     }
 
-    public int getCol() {
+    public int getColumn() {
         return column;
     }
     
