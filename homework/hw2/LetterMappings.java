@@ -1,7 +1,7 @@
 package hw2;
 
 /**
- * A class for the ASCII letter mappings
+ * A class for the ASCII letter mappings<br>
  * Homework 2 Question 3
  */
 public class LetterMappings {
@@ -15,7 +15,7 @@ public class LetterMappings {
     }
 
     /**
-     * Part A
+     * Part A<br>
      * Returns the number associated with the given character
      * @param character the character to translate to an integer
      * @return the integer associated with the ASCII letter ('a' = 0, 'A' = 0, 'b' = 1, 'B' = 1, etc.)
@@ -25,7 +25,7 @@ public class LetterMappings {
     }
 
     /**
-     * Part B
+     * Part B<br>
      * Returns a number associated with a sequence of characters
      * @param sequence the character sequence to translate
      * @return the integer of the translated sequence
@@ -35,10 +35,8 @@ public class LetterMappings {
         return 26 * ((int)(letters[0]) - 'a') + (letters[1] - 'a');
     }
 
-    // Part c
-
     /**
-     * Part C
+     * Part C<br>
      * Returns the ASCII character sequence for the given number
      * @param num the integer to translate to string
      * @return the character sequence

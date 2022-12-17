@@ -8,16 +8,16 @@ public class DijkstraTieSP {
      * Array which holds the distances of vertices to the source
      * distTo[v] = distance  of shortest s->v path
      */
-    private double[] distTo;
+    private final double[] distTo;
     /**
      * Array which holds the last edge of the shortest path between vertices and the source
      * edgeTo[v] = last edge on shortest s->v path
      */
-    private DirectedEdge[] edgeTo;
+    private final DirectedEdge[] edgeTo;
     /**
      * The priority queue of the vertices
      */
-    private IndexMinPQ<Double> pq;
+    private final IndexMinPQ<Double> pq;
 
     /**
      * Computes a shortest-paths tree from the source vertex {@code s} to every other
@@ -43,7 +43,7 @@ public class DijkstraTieSP {
         distTo[s] = 0.0;
 
         // relax vertices in order of distance from s
-        pq = new IndexMinPQ<Double>(G.V());
+        pq = new IndexMinPQ<>(G.V());
         pq.insert(s, distTo[s]);
         while (!pq.isEmpty()) {
             int v = pq.delMin();
@@ -56,7 +56,7 @@ public class DijkstraTieSP {
     }
 
     /**
-     * Relax edge {@param e} and update {@link #pq} if changed
+     * Relax an edge and update {@link #pq} if changed
      * @param e the edge to relax
      */
     private void relax(DirectedEdge e) {
@@ -120,17 +120,23 @@ public class DijkstraTieSP {
     public Iterable<DirectedEdge> pathTo(int v) {
         validateVertex(v);
         if (!hasPathTo(v)) return null;
-        Stack<DirectedEdge> path = new Stack<DirectedEdge>();
+        Stack<DirectedEdge> path = new Stack<>();
         for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()]) {
             path.push(e);
         }
         return path;
     }
 
-
-    // check optimality conditions:
-    // (i) for all edges e:            distTo[e.to()] <= distTo[e.from()] + e.weight()
-    // (ii) for all edge e on the SPT: distTo[e.to()] == distTo[e.from()] + e.weight()
+    /**
+     * Checks for the optimality conditions
+     * <ol type="i">
+     *     <li>For all edges {@code e}: distTo[e.to()] <= distTo[e.from()] + e.weight()
+     *     <li>For all edges {@code e} on the SPT: distTo[e.to()] == distTo[e.from()] + e.weight()
+     * </ol>
+     * @param G the edge weighted digraph
+     * @param s the source vertex
+     * @return {@code true} if there is an optimal solution, {@code false} otherwise
+     */
     private boolean check(EdgeWeightedDigraph G, int s) {
 
         // check that edge weights are non-negative

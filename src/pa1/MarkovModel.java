@@ -25,8 +25,8 @@ public class MarkovModel {
     public MarkovModel(int k, String s) {
         // Initialize known fields
         this.k = k;
-        substring1 = new TreeMap<String, Integer>();
-        substring2 = new TreeMap<String, Integer>();
+        substring1 = new TreeMap<>();
+        substring2 = new TreeMap<>();
         // create circular string to take into account combinations on the end
         // of the strings
         String circularString = s + s;
@@ -94,7 +94,7 @@ public class MarkovModel {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("S = " + this.S);
+        sb.append("S = " + S);
         // Add size k keys and values
         substring1.forEach((key, value) -> {
             sb.append("\n" + key + "\t" + value);

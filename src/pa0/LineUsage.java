@@ -14,7 +14,7 @@ public class LineUsage {
 
     // Constructor
     public LineUsage() {
-        this.lines = new HashMap<String, Integer>();
+        lines = new HashMap<>();
     }
 
     /**

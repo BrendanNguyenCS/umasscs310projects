@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * A class which prints the lines of a file in reverse order
+ * A class which prints the lines of a file in reverse order<br>
  * Homework 2 Question 5a
  */
 public class ReverseFile {

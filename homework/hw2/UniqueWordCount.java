@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * A class which prints all the different words in a file and their counts
+ * A class which prints all the different words in a file and their counts<br>
  * Homework 2 Question 5c
  */
 public class UniqueWordCount {

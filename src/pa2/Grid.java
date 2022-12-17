@@ -11,11 +11,11 @@ public class Grid {
      * The grid which specifies where spots are
      * all Spots are defined as {@code true} in the grid, {@code false} values are not a Spot
      */
-    private boolean[][] grid = null;
+    private final boolean[][] grid;
     /**
      * This structure keeps track of all groups in the grid, along with all the members of all the groups
      */
-    private ArrayList<Set<Spot>> allGroups;
+    private final ArrayList<Set<Spot>> allGroups;
     /**
      * The height of the grid
      */
@@ -31,7 +31,7 @@ public class Grid {
      */
     public Grid(boolean[][] ingrid) {
         grid = ingrid;
-        allGroups = new ArrayList<Set<Spot> >();
+        allGroups = new ArrayList<>();
         height = grid.length;
         width = grid[0].length;
     }
@@ -44,7 +44,7 @@ public class Grid {
         for(Set<Spot> g:allGroups) {
             for(Spot s:g)
                 System.out.println(s);
-            System.out.println("");
+            System.out.println();
         }
     }
 
@@ -57,12 +57,11 @@ public class Grid {
 
         // Traverse grid
         for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                // if the current spot is not in a group or is already in a group
+            // if the current spot is not in a group or is already in a group
+            for (int j = 0; j < grid[i].length; j++)
                 if (!grid[i][j] || spotsTraversed.contains(new Spot(i, j))) {
                     // continue
-                }
-                else {
+                } else {
                     // calculate group size
                     int groupSize = groupSize(i, j);
                     Set<Spot> currentGroup = new HashSet<Spot>();
@@ -70,7 +69,6 @@ public class Grid {
                     getGroup(i, j, groupSize, currentGroup, spotsTraversed);
                     allGroups.add(currentGroup);
                 }
-            }
         }
         return allGroups;
     }
@@ -92,7 +90,7 @@ public class Grid {
      * @return the size of the group
      */
     public int groupSize(int i, int j) {
-        HashSet<Spot> group = new HashSet<Spot>();
+        HashSet<Spot> group = new HashSet<>();
         findGroup(i, j, group);
         return group.size();
     }
@@ -112,7 +110,6 @@ public class Grid {
 
         // Stop if current square is not in a group or is already in the current group
         if (!grid[i][j] || group.contains(new Spot(i, j))) {
-            return;
         }
         else {
             // Add current square to group

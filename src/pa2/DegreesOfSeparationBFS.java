@@ -15,11 +15,11 @@ public class DegreesOfSeparationBFS {
     /**
      * The symbol graph which models the Bacon graph
      */
-    private SymbolGraph sg;
+    private final SymbolGraph sg;
     /**
      * The object to find the BFS paths from a source
      */
-    private BreadthFirstPaths bfs;
+    private final BreadthFirstPaths bfs;
 
     // Constructor
     public DegreesOfSeparationBFS(String fname, String delimiter, String source) {
@@ -63,7 +63,7 @@ public class DegreesOfSeparationBFS {
      * @return the stack which defines the path between Bacon and the actor
      */
     public Stack<Integer> graphPath(String sink){
-        Stack<Integer> path = new Stack<Integer>();
+        Stack<Integer> path = new Stack<>();
         // Get the sink index
         int sinkIndex = sg.indexOf(sink);
         // Add each part of the path between the actors to path stack

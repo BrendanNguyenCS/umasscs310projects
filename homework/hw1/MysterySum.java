@@ -1,7 +1,7 @@
 package hw1;
 
 /**
- * A class that does a mystery summation
+ * A class that does a mystery summation<br>
  * Homework 1 Question 5
  */
 public class MysterySum {

@@ -1,7 +1,7 @@
 package hw1;
 
 /**
- * A class that simulates a combination lock
+ * A class that simulates a combination lock<br>
  * Homework 1 Question 8
  */
 public class CombinationLock {

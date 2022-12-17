@@ -1,27 +1,22 @@
 package pa3;
 
 import edu.princeton.cs.algs4.In;
-
-import java.util.ArrayList;
+import java.util.*;
 
 public class Coins {
 
     /**
      * The amount needed to pay
      */
-    private int amount;
+    private final int amount;
     /**
      * An ArrayList of the coin denominations (the different coins that can be used to pay)
      */
-    private ArrayList<Integer> denominations;
+    private final ArrayList<Integer> denominations;
     /**
-     * Keeps track of the coins used when tracking minimum coins
+     * A tree to track the coin denominations and their minimums
      */
-    private int[] M;
-    /**
-     * Keeps track of the last coin used when tracking minimum coins
-     */
-    private int[] R;
+    private final HashMap<Integer, Integer> coinTree;
 
     // Constructor
     public Coins(String filename) {
@@ -34,10 +29,7 @@ public class Coins {
         for (int d : denos) {
             denominations.add(d);
         }
-        M = new int[amount + 1];
-        M[0] = 0;
-        R = new int[amount + 1];
-        R[0] = 1;
+        coinTree = new HashMap<>();
     }
 
     /**
@@ -49,36 +41,62 @@ public class Coins {
     }
 
     /**
+     * Getter for {@link #denominations}
+     * @return the coin denominations
+     */
+    public ArrayList<Integer> getDenominations() {
+        return denominations;
+    }
+
+    /**
      * Returns the minimum number of coins needed to pay the {@link #amount} by calling a private helper recursion method
      * @return the number of coins
      */
     public int makeChange() {
-        return findMinCoins(amount);
+        int[] coinsUsed = new int[amount + 1];
+        int[] lastCoin = new int[amount + 1];
+        coinsUsed[0] = 0; lastCoin[0] = 1;
+
+        for (int cents = 1; cents <= amount; cents++) {
+            int minCoins = cents;
+            int newCoin = 1;
+
+            int differentCoins = denominations.size();
+            for (int j = 0; j < differentCoins; j++) {
+                if (denominations.get(j) > cents) {
+                    continue;
+                }
+                if (coinsUsed[cents - denominations.get(j)] + 1 < minCoins) {
+                    minCoins = coinsUsed[cents - denominations.get(j)] + 1;
+                    newCoin = denominations.get(j);
+                }
+            }
+
+            coinsUsed[cents] = minCoins;
+            lastCoin[cents] = newCoin;
+        }
+
+        backtrack(amount, lastCoin);
+        return coinsUsed[amount];
     }
 
     /**
-     * Calculate the total minimum coins for the current total
-     * @param total the total amount to pay
-     * @return an integer signifying the minimum number of coins
-     * An adapted version of the bottom up dynamic programming strategy
+     * A method which keeps track of all coins for this amount
+     * @param amount the amount to pay
+     * @param lastCoin an array which keeps track of the last coins used
      */
-    private int findMinCoins(int total) {
-        for (int i = 1; i < total + 1; i++) {
-            int min = i;
-            int newCoin = 1;
-            for (int coin : denominations) {
-                if (coin > i) {
-                    continue;
-                }
-                if (1 + M[i - coin] < min) {
-                    min = Math.min(1 + M[i - coin], min);
-                    newCoin = coin;
-                }
-            }
-            M[i] = min;
-            R[i] = newCoin;
+    private void backtrack(int amount, int[] lastCoin) {
+        // Keeps track of how many coins each
+        for (int i = 0; i < denominations.size(); i++)
+            coinTree.put(denominations.get(i), 0);
+        // Backtrack
+        int s = amount;
+        while (s > 0) {
+            int coin = lastCoin[s];
+            int freq = coinTree.get(coin);
+            coinTree.put(coin, freq + 1);
+            s -= coin;
         }
-        return M[total];
     }
 
     /**
@@ -87,27 +105,16 @@ public class Coins {
      * @return the number of coins for a denomination to get the amount
      */
     public int howMany(int coin) {
-        int count = 0;
-        for (int i : R) {
-            if (i == coin) count++;
-        }
-        return count > M[amount] ? 0 : count;
+        return coinTree.get(coin) != null ? coinTree.get(coin) : 0;
     }
 
     /**
-     * Helper debugging method to view the contents of the array fields
+     * Helper debugging method to view the contents of the tree
      */
-    private void printArrays() {
-        // Print M
-        for (int i : M) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        // Print R
-        for (int i : R) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
+    private void printSolution() {
+        System.out.println(amount + " " + denominations);
+        System.out.println("For " + amount + " We use " + makeChange() + " coins as follows:");
+        System.out.println(coinTree);
     }
 
     public static void main(String[] args) {
@@ -115,7 +122,7 @@ public class Coins {
         // Print out min coins
         System.out.println(c.makeChange());
         // Print out array contents
-        c.printArrays();
+        c.printSolution();
         // Test output for coins.txt
         //System.out.println("70 = " + c.howMany(70));
         //System.out.println("34 = " + c.howMany(34));
