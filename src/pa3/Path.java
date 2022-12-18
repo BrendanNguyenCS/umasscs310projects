@@ -4,7 +4,6 @@ package pa3;
  * Class for a Path in the Dynamic Programming sequence alignment algorithm
  */
 public class Path {
-
     /**
      * The row for this node
      */
@@ -34,7 +33,6 @@ public class Path {
     public int getRow() {
         return row;
     }
-
     /**
      * Setter for {@link #row}
      * @param row the new row value
@@ -50,7 +48,6 @@ public class Path {
     public int getColumn() {
         return column;
     }
-
     /**
      * Setter for {@link #column}
      * @param column the new column value
@@ -66,7 +63,6 @@ public class Path {
     public int getCost() {
         return cost;
     }
-
     /**
      * Setter for {@link #cost}
      * @param cost the new cost for this node
@@ -82,7 +78,6 @@ public class Path {
     public Path getNext() {
         return next;
     }
-
     /**
      * Setter for {@link #next}
      * @param next the new next node in the optimal path
@@ -116,9 +111,6 @@ public class Path {
     public void printPath(String a, String b) {
         System.out.println("Edit Distance " + cost);
         Path p = this;
-        if (p == null) {
-            return;
-        }
         while (p.next != null) {
             int c = p.cost - p.next.cost;
             if (p.next.row == p.row + 1 && p.next.column == p.column + 1) {

@@ -4,7 +4,6 @@ package pa0;
  * One user's record on one line: how many times this user has been seen on this line
  */
 public class Usage {
-
     /**
      * The username of this user
      */
@@ -16,28 +15,32 @@ public class Usage {
 
     // Constructor
     public Usage(String x, int count) {
-        this.user = x;
+        user = x;
         this.count = count;
     }
 
     /**
-     * @param x the new value for {@link #count}
+     * Getter for {@link #count}
+     * @return the number of times this user has been seen on this line
+     */
+    public int getCount() {
+        return this.count;
+    }
+    /**
+     * Setter for {@link #count}
+     * @param x the new count
      */
     public void setCount(int x) {
         count = x;
     }
 
     /**
-     * @return the field {@link #user}
+     * Getter for {@link #user}
+     * @return the username for this user
      */
     public String getUser() {
         return this.user;
     }
 
-    /**
-     * @return the field {@link #count}
-     */
-    public int getCount() {
-        return this.count;
-    }
+
 }

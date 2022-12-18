@@ -5,7 +5,6 @@ package hw1;
  * Homework 1 Question 9
  */
 public class WordUsage {
-
     /**
      * The current word being tracked
      */
@@ -41,7 +40,6 @@ public class WordUsage {
     public int getCount() {
         return this.count;
     }
-
     /**
      * Setter for {@link #count}
      * @param count the new count

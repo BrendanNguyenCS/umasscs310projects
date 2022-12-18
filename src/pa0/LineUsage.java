@@ -6,7 +6,6 @@ import java.util.HashMap;
  * LineUsage.java: Handle one line's data, using a Map
  */
 public class LineUsage {
-
     /**
      * The map that encapsulates the data for this line
      */

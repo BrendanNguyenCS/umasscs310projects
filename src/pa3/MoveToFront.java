@@ -7,7 +7,6 @@ import java.util.LinkedList;
  * A class that encapsulates ASCII shifting
  */
 public class MoveToFront {
-
     /**
      * Applies move-to-front encoding
      * @param f the file name to read from
@@ -56,8 +55,6 @@ public class MoveToFront {
     }
 
     public static void main(String[] args) {
-        // if args[0] is '-', apply move-to-front encoding
-        // if args[0] is '+', apply move-to-front decoding
         if (args[0].equals("-")) {
             encode(args[1]);
         }
@@ -65,7 +62,7 @@ public class MoveToFront {
             decode(args[1]);
         }
         else {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("That is not a valid operation.");
         }
     }
 }

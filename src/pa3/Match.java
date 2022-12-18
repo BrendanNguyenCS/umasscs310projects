@@ -7,6 +7,12 @@ import java.io.*;
  * A class to demonstrate the matching sequence alignment dynamic programming algorithm
  */
 public class Match {
+    /**
+     * Computes the optimal sequence alignment of two DNA strings (of type {@link String})
+     * @param a a DNA string
+     * @param b a DNA string
+     * @return the {@link Path} object which represents the optimal sequence alignment
+     */
     public Path match(String a, String b) {
         if (a == null || b == null || a.length() == 0 || b.length() == 0) {
             return null;

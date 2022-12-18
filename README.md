@@ -24,9 +24,3 @@ java -cp .;../lib/algs4.jar pa3.MoveToFront - pa3/abra.txt | java -cp .;../lib/a
 ```
 
 The above command will print both the output for the program and the binary output of `HexDump`.
-
-<style>
-  pre {
-    overflow-x: auto;
-  }
-</style>

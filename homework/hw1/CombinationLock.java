@@ -5,7 +5,6 @@ package hw1;
  * Homework 1 Question 8
  */
 public class CombinationLock {
-
     /**
      * The lock's combination
      */
