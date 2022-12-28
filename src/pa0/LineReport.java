@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.*;
 
 public class LineReport {
-
     /**
      * Array for the terminals in the log file
      */
@@ -21,22 +20,26 @@ public class LineReport {
     /**
      * Reads the input data from the file, puts facts into {@link #lines} array
      * @param fname the file name
-     * @throws FileNotFoundException unless the file exists
      */
-    void loadData(String fname) throws FileNotFoundException {
+    void loadData(String fname) {
         // initialize file and scanner
         File file = new File(fname);
-        Scanner reader = new Scanner(file);
-        // constantly read lines of log file
-        while(reader.hasNextLine()) {
-            String line = reader.nextLine();
+        Scanner reader;
+        try {
+            reader = new Scanner(file);
+            // constantly read lines of log file
+            while(reader.hasNextLine()) {
+                String line = reader.nextLine();
 
-            // get the line number and username from read line
-            String[] parts = line.split(" ");
-            int lineNumber = Integer.parseInt(parts[0]);
-            String user = parts[1];
+                // get the line number and username from read line
+                String[] parts = line.split(" ");
+                int lineNumber = Integer.parseInt(parts[0]);
+                String user = parts[1];
 
-            lines[lineNumber].addObservation(user);
+                lines[lineNumber].addObservation(user);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("An error has occurred while scanning.", e);
         }
     }
 
@@ -53,7 +56,7 @@ public class LineReport {
         }
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         // read filename from command line
         String filename = args[0];
 

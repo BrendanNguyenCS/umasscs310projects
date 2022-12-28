@@ -5,13 +5,11 @@ import edu.princeton.cs.algs4.*;
 /**
  *  The {@code DegreesOfSeparationBFS} class is a modified implementation
  *  of Robert Sedgewick and Kevin Wayne's algs4 class {@code DegreesOfSeparation}.
- *  This class gets an actor's bacon number and the path between an actor
+ *  This class gets an actor's Bacon number and the path between an actor
  *  and the source actor.
- *
  *  @author Brendan Nguyen
  */
 public class DegreesOfSeparationBFS {
-
     /**
      * The symbol graph which models the Bacon graph
      */
@@ -29,17 +27,19 @@ public class DegreesOfSeparationBFS {
     }
 
     /**
-     * @return the field {@link #sg}
+     * Getter for {@link #sg}
+     * @return the symbol graph used as a reference for the Bacon graph
      */
     public SymbolGraph getSymbolGraph() { return sg; }
 
     /**
-     * @return the field {@link #bfs}
+     * Getter for {@link #bfs}
+     * @return the object used to find the breadth-first search paths from the source
      */
     public BreadthFirstPaths getBreadthFirstPaths() { return bfs; }
 
     /**
-     * Returns the actor's bacon relationship number
+     * Returns the actor's Bacon relationship number
      * @param sink the actor
      * @return the bacon number
      */

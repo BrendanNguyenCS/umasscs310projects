@@ -3,7 +3,6 @@ package pa2;
 import edu.princeton.cs.algs4.*;
 
 public class DijkstraTieSP {
-
     /**
      * Array which holds the distances of vertices to the source
      * distTo[v] = distance  of shortest s->v path
@@ -25,7 +24,6 @@ public class DijkstraTieSP {
      * @param  G the edge-weighted digraph
      * @param  s the source vertex
      * @throws IllegalArgumentException if an edge weight is negative
-     * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
     public DijkstraTieSP(EdgeWeightedDigraph G, int s) {
         for (DirectedEdge e : G.edges()) {
@@ -219,7 +217,7 @@ public class DijkstraTieSP {
             }
         }
         System.out.println();
-        // print shortest path for new DijstraTieSP
+        // print shortest path for new DijkstraTieSP
         for (int t = 0; t < G.V(); t++) {
             if (sp2.hasPathTo(t)) {
                 StdOut.printf("%d to %d (%.2f)  ", s, t, sp2.distTo(t));

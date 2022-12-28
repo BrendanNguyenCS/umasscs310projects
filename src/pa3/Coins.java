@@ -61,13 +61,13 @@ public class Coins {
             int newCoin = 1;
 
             int differentCoins = denominations.size();
-            for (int j = 0; j < differentCoins; j++) {
-                if (denominations.get(j) > cents) {
+            for (int coin : denominations) {
+                if (coin > cents) {
                     continue;
                 }
-                if (coinsUsed[cents - denominations.get(j)] + 1 < minCoins) {
-                    minCoins = coinsUsed[cents - denominations.get(j)] + 1;
-                    newCoin = denominations.get(j);
+                if (coinsUsed[cents - coin] + 1 < minCoins) {
+                    minCoins = coinsUsed[cents - coin] + 1;
+                    newCoin = coin;
                 }
             }
 
@@ -86,8 +86,8 @@ public class Coins {
      */
     private void backtrack(int amount, int[] lastCoin) {
         // Keeps track of how many coins each
-        for (int i = 0; i < denominations.size(); i++)
-            coinTree.put(denominations.get(i), 0);
+        for (int coin : denominations)
+            coinTree.put(coin, 0);
         // Backtrack
         int s = amount;
         while (s > 0) {

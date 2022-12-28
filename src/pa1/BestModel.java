@@ -4,7 +4,6 @@ import edu.princeton.cs.algs4.*;
 import java.lang.Math;
 
 public class BestModel{
-
     /**
      * The order of the current best model
      */
@@ -26,21 +25,24 @@ public class BestModel{
     }
 
     /**
-     * @return the field {@link #model1}
+     * Getter for {@link #model1}
+     * @return the first training Markov model
      */
     public MarkovModel getModel1() {
         return model1;
     }
 
     /**
-     * @return the field {@link #model2}
+     * Getter for {@link #model2}
+     * @return the second training Markov model
      */
     public MarkovModel getModel2() {
         return model2;
     }
 
     /**
-     * @return the field {@link #order}
+     * Getter for {@link #order}
+     * @return the order of the Markov models
      */
     public int getOrder() {
         return order;
@@ -92,7 +94,6 @@ public class BestModel{
      * A class used to compare substring likelihoods
      */
     private static class DiffModel implements Comparable<DiffModel> {
-
         /**
          * The current difference model's substring
          */
@@ -119,7 +120,8 @@ public class BestModel{
         }
 
         /**
-         * @return the field {@link #logDifference}
+         * Getter for {@link #logDifference}
+         * @return the difference between the log likelihoods
          */
         public double logDifference() {
             return logDifference;
@@ -128,7 +130,7 @@ public class BestModel{
         /**
          * Compares the log differences of this and another {@link DiffModel}
          * @param other the object to be compared
-         * @return 1 if this > other, -1 if this < other, 0 otherwise
+         * @return {@code 1} if this > other, {@code -1} if this < other, {@code 0} otherwise
          */
         public int compareTo(DiffModel other) {
             return Double.compare(Math.abs(this.logDifference), Math.abs(other.logDifference));

@@ -6,10 +6,9 @@ import java.util.*;
  * Class to demonstrate greedy algorithms. Skeleton.
  */
 public class Grid {
-
     /**
      * The grid which specifies where spots are
-     * all Spots are defined as {@code true} in the grid, {@code false} values are not a Spot
+     * all {@link Spot}s are defined as {@code true} in the grid, {@code false} values are not a Spot
      */
     private final boolean[][] grid;
     /**
@@ -27,7 +26,7 @@ public class Grid {
 
     /**
      * Constructor
-     * @param ingrid a two-dimensional array of boolean to be used as the grid to search
+     * @param ingrid a 2D array of {@link Boolean}s to be used as the grid to search
      */
     public Grid(boolean[][] ingrid) {
         grid = ingrid;
@@ -96,11 +95,11 @@ public class Grid {
     }
 
     /**
-     * The recursive method that fills the set of the Spots in the group. This will be called by groupSize() to
+     * The recursive method that fills the set of the {@link Spot}s in the group. This will be called by {@link #groupSize(int, int)} to
      * get the current group's size
      * @param i the current row in the grid
      * @param j the current column in the grid
-     * @param group the set that contains the current group
+     * @param group the {@link Set} that contains the current group
      */
     private void findGroup(int i, int j, Set<Spot> group) {
         // Checking if i,j coordinates are out of bounds
@@ -124,14 +123,14 @@ public class Grid {
     }
 
     /**
-     * This private recursive method utilized by calcGroups() to populate the current group and the set that
+     * This private recursive method utilized by {@link #calcAllGroups()} populates the current group and the set that
      * defines all the spots that have been visited. It also adds the known group size of the current group to all
-     * Spots
+     * {@link Spot}s
      * @param i the current row position in the grid
      * @param j the current column position in the grid
      * @param count the current group's group size
-     * @param group the Set that defines the current group
-     * @param allSpots the Set that defines all Spots that are already in a group
+     * @param group the {@link Set} that defines the current group
+     * @param allSpots the {@link Set} that defines all {@link Spot}s that are already in a group
      */
     private void getGroup(int i, int j, int count, Set<Spot> group, Set<Spot> allSpots) {
         // Checking if i,j coordinates are out of bounds
@@ -161,19 +160,24 @@ public class Grid {
      * This method checks if the desired coordinates are within the bounds of the grid
      * @param i the row coordinate
      * @param j the column coordinate
-     * @return true if the coordinates are in bounds, false otherwise
+     * @return {@code true} if the coordinates are in bounds, {@code false} otherwise
      */
     private boolean checkBounds(int i, int j) {
-        return !(i < 0 || j < 0 || i >= height || j >= width);
+        return i >=0 && j >= 0 && i < height && j < width;
     }
 
     /**
      * Nested class to represent a filled spot in the grid
      */
     public static class Spot {
-
         int i;
+        /**
+         * The column coordinate
+         */
         int j;
+        /**
+         * The group size
+         */
         int group;
 
         /**
@@ -189,8 +193,8 @@ public class Grid {
 
         /**
          * Tests whether this Spot is equal (i.e. has the same coordinates) to another
-         * @param o an Object
-         * @return true if o is a Spot with the same coordinates
+         * @param o a {@link Spot} object
+         * @return {@code true} if {@code o} is a {@link Spot} with the same coordinates
          */
         public boolean equals(Object o) {
             if (o == null)
@@ -202,11 +206,18 @@ public class Grid {
         }
 
         /**
-         * Returns an int based on Spot's contents
-         * another way: (new Integer(i)).hashCode()^(new Integer(j)).hashCode();
+         * Returns an int based on Spot's contents<br>
+         * Another way: {@code (new Integer(i)).hashCode()^(new Integer(j)).hashCode();}
          */
-        public int hashCode() { return i << 16 + j; } // combine i and j two halves of int
+        public int hashCode() {
+            return i << 16 + j; // combine i and j two halves of int
+        }
 
+        /**
+         * Getter for {@link #group}
+         * @return the group size
+         */
+        public int getGroup() {return group;}
         /**
          * @return the group size {@link #group}
          */
@@ -218,18 +229,19 @@ public class Grid {
         public void setGroup(int g) {group = g;}
 
         /**
-         * @return the row {@link #i}
+         * Getter for {@link #i}
+         * @return the row
          */
         public int getI() {return i;}
         /**
-         * @return the column {@link #j}
+         * Getter for {@link #j}
+         * @return the column
          */
         public int getJ() {return j;}
 
-
-
         /**
-         * Returns a String representing this Spot, just the coordinates. You can add group if you want.
+         * Returns a String representing this Spot, just the coordinates.<br>
+         * <small>Note: The group size can be added if needed.</small>
          */
         public String toString() {
             return "(" + i + " , " + j + ")";

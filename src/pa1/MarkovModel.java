@@ -3,7 +3,6 @@ package pa1;
 import java.util.*;
 
 public class MarkovModel {
-
     /**
      * The order of the Markov model
      */
@@ -76,14 +75,16 @@ public class MarkovModel {
     }
 
     /**
-     * @return the field {@link #k}
+     * Getter for {@link #k}
+     * @return the order of the Markov model
      */
     public int getK() {
         return k;
     }
 
     /**
-     * @return the field {@link #S}
+     * Getter for {@link #S}
+     * @return the size of the alphabet used to test substrings
      */
     public int getS() {
         return S;
@@ -96,13 +97,9 @@ public class MarkovModel {
         StringBuilder sb = new StringBuilder();
         sb.append("S = " + S);
         // Add size k keys and values
-        substring1.forEach((key, value) -> {
-            sb.append("\n" + key + "\t" + value);
-        });
+        substring1.forEach((key, value) -> sb.append("\n" + key + "\t" + value));
         // Add size k+1 keys and values
-        substring2.forEach((key, value) -> {
-            sb.append("\n" + key + "\t" + value);
-        });
+        substring2.forEach((key, value) -> sb.append("\n" + key + "\t" + value));
         return sb.toString();
     }
 }

@@ -8,21 +8,24 @@ import java.util.*;
  * Homework 2 Question 5b
  */
 public class UniqueWords {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         // read file from command line
         File file = new File(args[0]);
 
         // scan file and add to map
-        Scanner reader = new Scanner(file);
+        Scanner reader;
         HashMap<String, String> map = new HashMap<>();
-        while(reader.hasNext()) {
-            String word = reader.next();
-            map.putIfAbsent(word, "");
+        try {
+            reader = new Scanner(file);
+            while(reader.hasNext()) {
+                String word = reader.next();
+                map.putIfAbsent(word, "");
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("An error has occurred while scanning.", e);
         }
 
         // print all keys in map
-        map.forEach((key, value) -> {
-            System.out.println(key);
-        });
+        map.forEach((key, value) -> System.out.println(key));
     }
 }
