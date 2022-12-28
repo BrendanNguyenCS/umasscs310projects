@@ -4,7 +4,6 @@ import edu.princeton.cs.algs4.In;
 import java.util.*;
 
 public class Coins {
-
     /**
      * The amount needed to pay
      */

@@ -205,10 +205,12 @@ public class Grid {
          * Returns an int based on Spot's contents
          * another way: (new Integer(i)).hashCode()^(new Integer(j)).hashCode();
          */
-        public int hashCode() {
-            return i << 16 + j; // combine i and j two halves of int
-        }
+        public int hashCode() { return i << 16 + j; } // combine i and j two halves of int
 
+        /**
+         * @return the group size {@link #group}
+         */
+        public int getGroup() {return group;}
         /**
          * Setter for {@link #group}
          * @param g the new group size
@@ -219,16 +221,12 @@ public class Grid {
          * @return the row {@link #i}
          */
         public int getI() {return i;}
-
         /**
          * @return the column {@link #j}
          */
         public int getJ() {return j;}
 
-        /**
-         * @return the group size {@link #group}
-         */
-        public int getGroup() {return group;}
+
 
         /**
          * Returns a String representing this Spot, just the coordinates. You can add group if you want.
