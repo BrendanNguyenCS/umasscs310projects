@@ -1,0 +1,238 @@
+\documentclass[letterpaper, 11pt]{article}
+\usepackage{nopageno} % For removing page numbers
+\usepackage[utf8]{inputenc}
+\usepackage{color, colortbl} % For table coloring
+\usepackage{titling} % For positioning of title preamble
+\usepackage[margin=0.75in]{geometry} % For margin width setting
+\usepackage{comment} % For block commenting
+\usepackage{float} % For table positioning
+% For math equation formatting
+\usepackage{amsmath, amssymb, amsfonts}
+\newcommand{\PMod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
+\usepackage{parskip} % For automatic paragraph spacing/formatting
+\usepackage{relsize} % For increased math mode font sizing
+% For code blocks
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{listings, minted}
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    keepspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color{blue},
+    commentstyle=\sffamily\itshape\color{Green}\scriptsize,
+    stringstyle = \color{red},
+    breaklines=true,
+    breakatwhitespace=false,
+    tabsize=2
+}
+\tcbset{
+    colback=gray!5!white,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colframe=gray!75!black,
+    enhanced,
+}
+\setlength{\extrarowheight}{2pt}
+\usepackage{titlesec} % Custom styling for section titles
+\titleformat{\section}
+  {\normalfont\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont}{\thesection}{1em}{}
+% For side by side figures
+\usepackage{multicol}
+\usepackage{makecell}
+% For horizontal lists
+\usepackage{enumitem, tasks, varwidth}
+% For custom page numbers
+\usepackage{fancyhdr, lastpage}
+\pagestyle{fancy}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\usepackage{graphicx} % Adding images
+\usepackage{times}
+\renewcommand{\ttdefault}{lmtt}
+
+% Move title area to the top of the page
+\setlength{\droptitle}{-4em}
+\addtolength{\droptitle}{-4pt} 
+\renewcommand{\arraystretch}{1.25}
+% Disable paragraph indenting
+\setlength{\parindent}{0pt}
+
+\title{CS310: Advanced Data Structures and Algorithms}
+\author{Fall 2022 Assignment 3}
+\date{Due: Monday, October 31, 2022 on Gradescope}
+
+\begin{document}
+
+\maketitle
+
+\section*{Goal}
+
+\textbf{Practice hash tables and graphs.}
+
+\section*{Questions}
+
+\begin{enumerate}
+    \item \textbf{Hashing:} Quadratic probing is an alternative way to resolve collisions. It is similar to linear probing in the sense that if a collision occurs, another index will be probed. but if, say, the key is hashed to index $i$, instead of probing $(i+1)\%m$, $(i+2)\%m$, $(i+3)\%m$, etc., the probing is done in quadratically larger jumps, so the probing chain in this case is $(i+1)\%m$, $(i+4)\%m$, $(i+9)\%m$, etc., and in general the $k^{th}$ probe step is $(i+k^2)\%m$.
+
+    Given a hash table of size 11, the key data is the following identifiers for some inventory: A29, C42, E12, D31, F08 and G34, B10. The hash function is H(LN) = ((L-`A’) + N) \% 11, where L is the letter, N is the number and `A' is the ASCII value for A. For example, H(``C29") = (2 + 29)\% 11 = 9 since `C' - `A' = 2. For your convenience– the multiples of 11 are 11, 22, 33, 44, 55 etc. (such that the two digits are the same).
+
+    \begin{enumerate}
+        \item Draw the final configuration of the table after all the elements are inserted in the following illustration using linear probing. Do not rehash.
+
+        The hash of each of the identifiers are as shown:
+        \begin{itemize}
+            \item H(``A29") = (0 + 29) \% 11 = 7
+            \item H(``C42") = (2 + 42) \% 11 = 0
+            \item H(``E12") = (4 + 12) \% 11 = 5
+            \item H(``D31") = (3 + 31) \% 11 = 1
+            \item H(``F08") = (5 + 8) \% 11 = 2
+            \item H(``G34") = (6 + 34) \% 11 = 7 (index 7 is already filled here so index 8 is filled)
+            \item H(``B10") = (1 + 10) \% 11 = 0 (index 0, 1, and 2 are filled here so index 3 is filled)
+        \end{itemize}
+
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+                \hline
+                C42 & D31 & F08 & B10 & & E12 & & A29 & G34 & & \\
+                \hline
+            \end{tabular}
+        \end{table}
+        \vspace{-1em}
+        \item Do the same for quadratic probing. Again, do not rehash.
+
+        We will follow a similar idea to the previous question.
+        \begin{itemize}
+            \item H(``A29") = (0 + 29) \% 11 = 7
+            \item H(``C42") = (2 + 42) \% 11 = 0
+            \item H(``E12") = (4 + 12) \% 11 = 5
+            \item H(``D31") = (3 + 31) \% 11 = 1
+            \item H(``F08") = (5 + 8) \% 11 = 2
+            \item H(``G34") = (6 + 34) \% 11 = 7 (index 7 is already filled here so index at $(7 + 1) \% 11$ is filled)
+            \item H(``B10") = (1 + 10) \% 11 = 0 (index 0 and 1 ($i+1$) are filled so $i + 4$ is filled)
+        \end{itemize}
+
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+                \hline
+                C42 & D31 & F08 & & B10 & E12 & & A29 & G34 &  &  \\
+                \hline
+            \end{tabular}
+        \end{table}
+        \vspace{-1em}
+    \end{enumerate}
+
+    \item \textbf{Graphs: K\&T, Ch. 3 q.4:} inspired by the example of that great Cornellian, Vladimir Nabokov, some of your friends have become amateur lepidopterists (they study butterflies). Often when they return from a trip with specimens of butterflies, it is very difficult for them to tell how many distinct species they’ve caught – thanks to the fact that many species look very similar to one another.
+
+    One day they return with n butterflies, and they believe that each belongs to one of two different species, which we’ll call A and B for purposes of this discussion. They’d like to divide the n specimens into two groups–those that belong to A and those that belong to B – but it’s very hard for them to directly label any one specimen. So they decide to adopt the following approach.
+
+    For each pair of specimens i and j, they study them carefully side by side. If they're confident enough in their judgment, then they label the pair (i,j) either ``same" (meaning they believe them both to come from the same species) or ``different” (meaning they believe them to come from different species). They also have the option of rendering no judgment on a given pair, in which case we’ll call the pair \textit{ambiguous}.
+
+    So now they have the collection of n specimens, as well as a collection of m judgments (either ``same" or ``different") for the pairs that were not declared to be ambiguous. They’d like to know if this data is consistent with the idea that each butterfly is from one of species A or B. So more concretely, we’ll declare the m judgments to be consistent if it is possible to label each specimen either A or B in such a way that for each pair (i,j) labeled ``same," it is the case that i and j have the same label; and for each pair (i,j) labeled ``different,” it is the case that i and j have different labels. They’re in the middle of tediously working out whether their judgments are consistent, when one of them realizes that you probably have an algorithm that would answer this question right away.
+
+    Give an algorithm with running time $O(m+n)$ that determines whether the m judgments are consistent. \textbf{Hint:} There is an underlying undirected graph problem here. Try to find out what are the vertices, what are the edges, and what algorithm(s) we showed in class can solve this problem.
+
+    We can build an undirected graph of $n$ nodes, one node per specimen. We know that every edge between adjacent specimens would signify a judgment being made, each one is also labelled ``same" or ``different". Then it is a modified BFS.
+
+    Input: a graph $G$
+    \begin{itemize}
+        \item Start from an arbitrary vertex $s$. Assign it to a species.
+        \item Run a modified BFS from $s$:
+        \item For each vertex $v$, look at every neighbor $w$:
+        \begin{itemize}
+            \item If $w$ has already been visited, check for the previously described inconsistencies. If you find one, then the graph is inconsistent.
+            \item If $w$ is unassigned, assign it according to the edge. If the edge is ``same", assign $w$ to the same species as $v$. If ``different", then assign it to the other species. Then put it in the queue.
+        \end{itemize}
+        \item If there are vertices that haven't been assigned, then start another run of the modified BFS described above from an unassigned vertex.
+        \item Return \texttt{TRUE} if there are no inconsistencies.
+    \end{itemize}
+
+    \item \textbf{Graphs: K\&T, Ch. 3 q.9:} There’s a natural intuition that two nodes that are far apart in a communication network– separated by many hops– have a more ”tenuous” connection than two nodes that are close together. There are a number of algorithmic results that are based to some extent on different ways of making this notion precise. Here’s one that involves the susceptibility of paths to the deletion of nodes. Suppose that an n-node undirected graph $G = (V,E)$ contains two nodes s and t such that the distance between s and t is strictly greater than n/2.
+
+    \begin{enumerate}
+        \item Show that there must exist some node $v$, not equal to either $s$ or $t$, such that deleting v from G destroys all s-t paths. (In other words, the graph obtained from G by deleting v contains no path from s to t.) \textbf{Hint:} The proof is not very complicated. Just reason about the distance between $s$ and $t$ being greater than $n/2$, assume such a node $v$ does not exist and prove by contradiction why it cannot be.
+
+        \begin{itemize}
+            \item We know that the minimum distance between nodes $s$ and $t$ must be $\frac{n}{2} + 1$
+            \item We assume that there is no node $v$ such that deleting it destroys all paths between $s$ and $t$.
+            \item If this was the case, then we would have the case that each layer between $s$ and $t$ would have 2 nodes within them (deleting a node of a layer still leaves a path remaining). This means that the total number of nodes in the tree NOT including $s$ or $t$ would be $n$ ($2 \cdot \frac{n}{2}$). This would be impossible as the given size of the graph is $n$ and the size of the previously described graph would be of size $n + 2$.
+            \item This means that there must be a layer that only contains one node within it. We know that deleting a layer with only one node would destroy all paths from $s$ to $t$.
+        \end{itemize}
+        \item Give an algorithm with running time $O(m + n)$ to find such a node $v$. \textbf{Hint:} The algorithm involves some graph traversal.
+        The algorithm centers around BFS.
+        \begin{enumerate}[label={\arabic*}.]
+            \item We can BFS from $s$ and $t$.
+            \item If we find a node $v$ that the BFS finds from $s$ and $t$, then we return \texttt{true}.
+            \item If not, then we return \texttt{false}.
+        \end{enumerate}
+        
+    \end{enumerate}
+
+    \item \textbf{Directed Graphs:} Trace Depth-First search (DFS) on the following graph, starting from $v_1$. Mark all vertices and edges in order of visitation. To make the search fully specified, if two or more options exist, break tie by alphabetical order. Mark by $^\ast$ the edges that participate in the DFS tree.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.7]{Images/hw3q4.png}
+    \end{figure}
+
+    The order of visitation would be as follows:
+    \begin{enumerate}[label={\arabic*}.]
+        \item vertex $v_1$
+        \item $v_1 \to v_2$
+        \item vertex $v_2$
+        \item $v_2 \to v_4$
+        \item $v_2 \to v_4$
+        \item vertex $v_4$
+        \item $v_1 \to v_4$ (not a tree edge)
+        \item $v_1 \to v_5$
+        \item vertex $v_5$
+        \item $v_5 \to v_3$
+        \item vertex $v_3$
+        \item $v_3 \to v_6$
+        \item vertex $v_6$
+        \item $v_3 \to v_2$ (not a tree edge)
+        \item $v_3 \to v_4$ (not a tree edge)
+    \end{enumerate}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.7]{Images/hw3q4(2).png}
+    \end{figure}
+
+    \item \textbf{DAG:} A \textit{Hamiltonian path} in a graph is a graph that visits every vertex exactly once.
+
+    \begin{enumerate}
+        \item Show that a DAG (directed acyclic graph) has a hamiltonian path if and only if it has just one topological ordering (you may assume the graph is connected). Remember this is an if and only if proof, so show both sides.
+
+        Suppose the graph has a Hamiltonian path $P = \{v_1, v_2,\ldots, v_n\}$. We assume by contradiction that there is another valid topological sort to the graph. In this case, there is at least one pair of vertices, such that a vertex $v_i$  appears before another vertex $v_j$ in one topological sort, but after $v_j$ in the other. This is only possible if there is no path between the two vertices. But $P$ connects all the vertices in the graph so there must be a path between $v_i$ and $v_j$, a contradiction.
+
+        Additionally, we can also theorize a situation where the grpah has only one topological order $T = \{v_1, v_2,\ldots, v_n\}$. We have to prove that there is an edge between $v_i$ to $v_{i + 1}$ for every consecutive pair of vertices along the topological order, signifying a Hamiltonian path. Assuming by contradiction that there isn't such an edge, we can see that there are only two ways this is possible.
+
+        \begin{itemize}
+            \item The size between two vertices is more than 1, so there is at least one other vertices between them. This contradicts the assumption that the two vertices are adjacent in the topological order.
+            \item The two vertices are not connected by a path. But reversing the order would yield another valid topological order. This also contradicts the assumption that there is only one topological sort.
+        \end{itemize}
+        
+        \item Give an $O(m+n)$ algorithm to find whether a DAG has a hamiltonian path.
+
+        The algorithm is to topologically sort the graph. Follow the vertices in the order of the sort. If every consecutive pair of vertices along the sorted order is connected by an edge, you found a Hamiltonian path. The runtime is the same as the topological sort runtime, $O(m+n)$.
+    \end{enumerate}
+
+    \item \textbf{DAG:} A student suggested to topologically sort a DAG $G = (V,E)$ by first running BFS from a vertex $s$ with an in-degree of 0, and then listing the vertices in the order of their distance from $s$. Show a simple example where this algorithm will not work. You may assume $G$ is indeed a DAG, so no wise-assery.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.7]{Images/hw3q6.png}
+    \end{figure}
+
+    Here, vertices B and C are a distance of 1 from A, but there is a path between B and C, yielding an order of A, B, C. But C can come before B in BFS.
+    
+\end{enumerate}
+
+\end{document}

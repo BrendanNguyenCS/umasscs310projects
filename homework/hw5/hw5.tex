@@ -1,0 +1,203 @@
+\documentclass[letterpaper, 11pt]{article}
+\usepackage{nopageno} % For removing page numbers
+\usepackage[utf8]{inputenc}
+\usepackage{color, colortbl} % For table coloring
+\usepackage{titling} % For positioning of title preamble
+\usepackage[margin=0.75in]{geometry} % For margin width setting
+\usepackage{comment} % For block commenting
+\usepackage{float} % For table positioning
+% For math equation formatting
+\usepackage{amsmath, amssymb, amsfonts}
+\newcommand{\PMod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
+\usepackage{parskip} % For automatic paragraph spacing/formatting
+\usepackage{relsize} % For increased math mode font sizing
+% For code blocks
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage{listings, minted}
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    keepspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color{blue},
+    commentstyle=\sffamily\itshape\color{Green}\scriptsize,
+    stringstyle = \color{red},
+    breaklines=true,
+    breakatwhitespace=false,
+    tabsize=2
+}
+\tcbset{
+    colback=gray!5!white,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colframe=gray!75!black,
+}
+\setlength{\extrarowheight}{2pt}
+\usepackage{titlesec} % Custom styling for section titles
+\titleformat{\section}
+  {\normalfont\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont}{\thesection}{1em}{}
+% For side by side figures
+\usepackage{multicol}
+\usepackage{makecell}
+% For horizontal lists
+\usepackage{enumitem, tasks, varwidth}
+% For custom page numbers
+\usepackage{fancyhdr, lastpage}
+\pagestyle{fancy}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\usepackage{times}
+
+% Move title area to the top of the page
+\setlength{\droptitle}{-4em}
+\addtolength{\droptitle}{-4pt} 
+% Disable paragraph indenting
+\setlength{\parindent}{0pt}
+
+
+\title{CS310: Advanced Data Structures and Algorithms}
+\author{Fall 2022 Assignment 5}
+\date{Due: Thursday, Dec. 15, 2022 on Gradescope}
+
+\begin{document}
+
+\maketitle
+
+\section*{Goals}
+
+\textbf{Huffman's coding, network flow}
+
+\section*{Questions}
+
+\begin{enumerate}
+    \item \textbf{Huffman's Coding:}
+    \begin{enumerate}
+        \item Show the Huffman trie that results from the following distributions (frequencies in parentheses): colon (100), space (605), comma (705), 0 (431), 1 (242), 2 (176), 3 (59), 4 (185), 5 (250), 6 (174). (To make the trie fully-specified, put the lower-weight subtree on the right on each merge operation. Start by listing the weights in increasing order from left to right, with their symbols below them on the next line, leaving space above to build trees.)
+
+        The sorted characters:
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c}
+                Character & 3 & : & 6 & 2 & 4 & 1 & 5 & 0 & ' ' & , \\
+                \hline
+                Frequency & 59 & 100 & 174 & 176 & 185 & 242 & 250 & 431 & 605 & 705
+            \end{tabular}
+        \end{table}
+
+        The resulting tree is:
+        \begin{figure}[H]
+            \centering
+            \includegraphics{Images/hw5q1.png}
+        \end{figure}
+
+        The resulting code table and analysis:
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{cccc}
+                character & code & frequency & total bits \\
+                \hline
+                : & 10110 & 100 & 500 \\
+                '' & 11 & 605 & 1210 \\
+                , & 01 & 705 & 1410\\
+                0 & 001 & 431 & 1293\\
+                1 & 0001 & 242 & 968\\
+                2 & 1001 & 176 & 704\\
+                3 & 10111 & 59 & 295\\
+                4 & 1000 & 185 & 740\\
+                5 & 0000 & 250 & 1000\\
+                6 & 1010 & 174 & 696
+            \end{tabular}
+        \end{table}
+        \item What is the resulting binary code for the most frequent symbol? The least frequent?
+
+        From the table above, we see that the most frequent is ',' and the least frequent is '3'.
+        \item With the coding scheme  above, code the 7-symbol text ``04: 12,". Show the binary string and the bytes in hex.
+        The code would be \texttt{001 1000 10110 11 0001 1001 01} which translates to \texttt{31 6c 65}
+        \item With the coding scheme above, decode 011101001011001.
+
+        , ' ' , 0 , 2
+        
+    \end{enumerate}
+    \item \textbf{LZW compression:} Compress the following text: aababacbaacbaadaaa using LZW. Show the output and the compression table.
+    
+    61 61 62 82 61 63 83 85 87 64 81 61 80
+
+    The compression table is as follows:
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|c}
+            key & value \\
+            \hline
+            a & 61\\
+            b & 62\\
+            c & 63\\
+            d & 64\\
+            ... & \\
+            aa & 81\\
+            ab & 82\\
+            ac & 83\\
+            aba & 84\\
+            ac & 85\\
+            cb & 86\\
+            baa & 87\\
+            acb & 88\\
+            baad & 89\\
+            da & 8A\\
+            aaa & 8b
+        \end{tabular}
+    \end{table}
+    
+    \item \textbf{Max-Flow-Min-Cut:} K\& T 7.2: Given the following flow network on which an s-t flow has been computed. The capacity of each edge appears as a label on the edge, and the numbers in parentheses give the amount of flow sent on each edge. (Edges without parentheses– specifically, the four edges of capacity 3– have no flow being sent on them.)
+    \begin{figure}[H]
+        \centering
+        \includegraphics{Images/hw5q3.png}
+    \end{figure}
+    \begin{enumerate}
+        \item What is the value of this flow? Is this a maximum (s,t) flow in this graph?
+
+        The value of the flow is 18, as seen by the sum of the flow on the edges leaving $s$ or entering $t$.
+        
+        \item Find a minimum s-t cut in the flow network and also say what its capacity is.
+
+        The minimum cut is $\{s,a\}$ and its capacity is 21. This is also the value of the maximum flow. It can be obtained by the following residual network:
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.8]{Images/hw5q3(2).png}
+        \end{figure}
+    \end{enumerate}
+
+    The augmenting paths are: $x \to a \to t$ (capacity: 5), $s \to b \to c \to t$ (capacity: 5), $s \to a \to c \to t$ (capacity: 3), $s \to d \to t$ (capacity: 5), $s \to b \to d \to t$ (capacity: 3).
+    
+    \item \textbf{Max-Flow-Min-Cut:} K\& T 7.3: Given the following flow network on which an s-t flow has been computed. The capacity of each edge appears as a label on the edge, and the numbers in parentheses give the amount of flow sent on each edge. (as before, edges with no parentheses have no flow being sent on them.)
+    \begin{figure}[H]
+        \centering
+        \includegraphics{Images/hw5q4.png}
+    \end{figure}
+    \begin{enumerate}
+        \item What is the value of this flow? Is this a maximum (s,t) flow in this graph?
+
+        The value of the flow is 10, as seen by the sum of the flow on the edges leaving $s$ or entering $t$.
+        
+        \item Find a minimum s-t cut in the flow network and also say what its capacity is.
+
+        The minimum cut is $\{s,a,b,c\}$ and its capacity is 11, which is also the value of the maximum flow. It can be obtained by the following residual network:
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.8]{Images/hw5q4(2).png}
+        \end{figure}
+        
+    \end{enumerate}
+    \item \textbf{Max-Flow-Min-Cut:} K \& T 7.4: Decide whether the following statement is true or false. If it is true, give a short explanation. If it is false, give a counter example:
+    
+    Let $G$ be an arbitrary flow network, with a source $s$, a sink $t$, and a positive integer capacity $c(e)$ on every edge $e$. If $f$ is a maximum $s$-$t$ flow in $G$, then $f$ saturates every edge out of $s$ with flow (i.e., for all edges $e$ out of $s$, we have $f(e) = c(e)$).
+
+    It is false. The examples from the previous questions provide counter-examples for this.
+\end{enumerate}
+
+\end{document}

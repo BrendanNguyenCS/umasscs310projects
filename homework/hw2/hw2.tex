@@ -1,0 +1,191 @@
+\documentclass[letterpaper, 11pt]{article}
+\usepackage{nopageno} % For removing page numbers
+\usepackage[utf8]{inputenc}
+\usepackage{color, colortbl} % For table coloring
+\usepackage{titling} % For positioning of title preamble
+\usepackage[margin=0.75in]{geometry} % For margin width setting
+\usepackage{comment} % For block commenting
+\usepackage{float} % For table positioning
+% For math equation formatting
+\usepackage{amsmath, amssymb, amsfonts}
+\newcommand{\PMod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
+\usepackage{parskip} % For automatic paragraph spacing/formatting
+\usepackage{relsize} % For increased math mode font sizing
+\renewcommand{\ttdefault}{lmtt}
+% For code blocks
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{listings, minted}
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    keepspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color{blue},
+    commentstyle=\sffamily\itshape\color{Green}\scriptsize,
+    stringstyle = \color{red},
+    breaklines=true,
+    breakatwhitespace=false,
+    tabsize=2
+}
+\tcbset{
+    colback=gray!5!white,
+    boxsep=5pt,
+    lefttitle=0pt,
+    colframe=gray!75!black,
+    enhanced,
+}
+\setlength{\extrarowheight}{2pt}
+\usepackage{titlesec} % Custom styling for section titles
+\titleformat{\section}
+  {\normalfont\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont}{\thesection}{1em}{}
+% For side by side figures
+\usepackage{multicol}
+\usepackage{makecell}
+% For horizontal lists
+\usepackage{enumitem, tasks, varwidth}
+% For custom page numbers
+\usepackage{fancyhdr, lastpage}
+\pagestyle{fancy}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\usepackage{times}
+
+% Move title area to the top of the page
+\setlength{\droptitle}{-4em}
+\addtolength{\droptitle}{-4pt} 
+\renewcommand{\arraystretch}{1.25}
+% Disable paragraph indenting
+\setlength{\parindent}{0pt}
+
+\title{CS310: Advanced Data Structures and Algorithms}
+\author{Fall 2022 Assignment 2}
+\date{Due: Sunday, October 2, 2022 on Gradescope}
+
+\begin{document}
+
+\maketitle
+
+\section*{Goal}
+
+\textbf{Practice lists, stacks, Sets and Maps. Some runtime revision.}
+
+\section*{Questions}
+
+\begin{enumerate}
+    \item
+    \begin{enumerate}
+        \item Suppose a \texttt{List<String> list1} has elements ``A", ``B", ``C", and ``D". What is returned by:
+        \begin{enumerate}[label={\arabic*}. ]
+            \item \texttt{list1.iterator().next();}
+            
+            ``A"
+            
+            \item \texttt{list1.listIterator().next();}
+
+            ``A"
+            
+            \item \texttt{list1.listIterator(2).next();}
+
+            ``C"
+            
+            \item \texttt{list1.listIterator(4).previous();}
+
+            ``D"
+        \end{enumerate}
+        \item Say what is deleted (or what happens) if next/previous is followed by removed in all of the above operations. Explain (\textbf{answer each part separately. That is \texthorizontalbar\ assume the list is back intact after you answer part 1, and you start with a fresh copy of a 4-item list for part 2}).
+        \begin{enumerate}[label={\arabic*}. ]
+            \item ``A" will be deleted.
+            \item ``A" will be deleted.
+            \item ``C" will be deleted.
+            \item ``D" will be deleted.
+        \end{enumerate}
+        \item If we had the following sequence of commands:\\
+        \texttt{list1.listIterator(2).next();}\\
+        \texttt{list1.listIterator(2).remove();}\\
+        \texttt{list1.listIterator(4).previous();}\\
+        What would be returned? What would the list look like following these operations?
+
+        The first command would return ``C". Then the second command would delete that value. However, the last command wouldn't run because the list at this stage would not have a value at index 3.
+    \end{enumerate}
+    \item
+    \begin{enumerate}
+        \item Say you have a \texttt{HashMap<Integer, Integer>} of size 1000 and one search operation takes approximately 1ms. How long will one search take (approximately, on average) on a \texttt{HashMap<Integer, Integer>} of size 2000?
+
+        The average runtime for a search through a HashMap is O(1). Therefore, the average runtime is independent of the size of the map. So a HashMap with size 2000 would also run in 1ms.
+        
+        \item Same question, only \texttt{TreeMap<Integer, Integer>}.
+
+        The average runtime for a TreeMap is $\log(n)$. Therefore, if a TreeMap of size 1000 runs in 1ms, a TreeMap of size 2000 should run a little bit longer than the 1000-size TreeMap.
+        
+        \item Same, but a \texttt{LinkedList<Integer>}.
+
+        A LinkedList has an average runtime of O(n). Therefore a LinkedList of size 2000 would run in 2ms.
+        
+    \end{enumerate}
+    \item Write Java functions (static methods) that provide the following computed mappings. Do not use Maps, just very simple functions \textbf{using character arithmetics}, 1-2 lines should suffice:
+    \begin{enumerate}
+        \item `a' \textrightarrow\ 0, `b' \textrightarrow\ 1, \ldots, `z' \textrightarrow\ 25, and also, `A' \textrightarrow\ 0, \ldots, `Z' \textrightarrow\ 25 (in one map). Note that Java supports arithmetic with char variables: ch - `a' is 0 if char ch is `a', 1 if it is `b', and so on.
+
+\begin{tcolorbox}[breakable, title=\texttt{LetterMappings.java}]
+\begin{lstlisting}[language=Java]
+public static int CharacterToNumber(char character) {
+    return (int)(Character.toLowerCase(character) - 'a');
+}  
+\end{lstlisting}
+\end{tcolorbox}
+
+        \item ``aa" \textrightarrow\ 0, ``ab" \textrightarrow\ 1, ``ac" \textrightarrow\ 2, \ldots, ``az" \textrightarrow\ 25, ``ba" \textrightarrow\ 26, ``bb" \textrightarrow\ 27, \ldots, ``zz" \textrightarrow\ (26*26*-1)
+
+\begin{tcolorbox}[breakable, title=\texttt{LetterMappings.java}]
+\begin{lstlisting}[language=Java]
+public static int StringToNumber(String sequence) {
+    char[] letters = sequence.toCharArray();
+    return 26 * ((int)(letters[0]) - 'a') + (letters[1] - 'a');
+}
+\end{lstlisting}
+\end{tcolorbox}
+        
+        \item The inverse of b: input a number and return a pair of letters (in other words \texthorizontalbar\ reverse the directions of the arrows in b).
+
+\begin{tcolorbox}[breakable, title=\texttt{LetterMappings.java}]
+\begin{lstlisting}[language=Java]
+public static String NumberToString(int num) {
+    char[] letters = new char[]{(char)(num / 26 + 'a'), (char)(num % 26 + 'a')};
+    return new String(letters);
+}
+\end{lstlisting}
+\end{tcolorbox}
+        
+    \end{enumerate}
+    \item What methods of Map can be implemented in O(1) time with a good hash function and a properly-sized hash table? What methods of Set? Could we implement List with a hash table? Explain.
+
+    For a Map, the following methods have a constant runtime: \texttt{get()}, \texttt{remove()}, \texttt{containsKey()}, \texttt{put()}, and \texttt{size()}. Similarly, all of the similar methods in Set are also constant time methods. Theoretically, we can implement a List using a hash map since all the functions associated with searching, adding, and iterating through them have the same runtime.
+    
+    \item Given below are descriptions of some computer programs. Each of them reads a text file from standard input. For each of them specify:
+    \begin{itemize}
+        \item Which APIs would you use. Choose from APIs discussed in class: List / Map / Set
+        \item Which implementations of the APIs would you use, e.g. Linked List / HashTable / Tree \ldots
+        \item Describe how you would use the API to implement the program. Give pseudocode or describe step by step how your program would work. No need to write an actual program.
+        \item Give the time complexity of your program in terms of the number of words or lines read (whichever is appropriate).
+    \end{itemize}
+    Try to make your programs as simple and efficient as possible. What the programs should do:
+    \begin{enumerate}
+        \item Print lines of the file in reverse order.
+
+        For this program, I would use a List API. More specifically, I would use either the \texttt{ArrayList} or \texttt{LinkedList} implementations. Because we are only tracking each line and their order, a list is ideal for this situation. The program would read and scan through each line of the file (using a \texttt{Scanner} object). Each time it reads a line, we would call the list's \texttt{add} method. After we complete the scan, we can use a \texttt{for} loop to iterate through the list backward with the list's \texttt{get} method. The runtime of this program would be O(n).
+        
+        \item Print all different words in the file, each word printed exactly once (order not important).
+
+        There are two different ways to complete this task, either a list or a map. Because we don't care about printing out each word's occurrence in the file, a list could be used. However, with a list API, duplicates aren't checked, meaning that we would need to check if the word already exists in the list before calling \texttt{add}. The other way is to use a map where duplicates are not possible with the \texttt{put} method. Because the \texttt{contains} method in the list API has a constant runtime, I would use a list (similar to above). For each line, the program would check if the word exists in the list (with the aforementioned \texttt{contains} method). If it already exists, we would move on to the next line. If it doesn't, then the program would add the word to the list and move on to the next word. After the whole file is scanned, we would again loop through the list (with \texttt{for}) and print each word. The runtime would again be O(n).
+        
+        \item Print all different words in the file, with each word print how many times it occurs in the file (order not important).
+
+        This program would use the \texttt{HashMap} implementation of the Map API. This allows us to keep track of each word and the number of occurrences of each word. We can then read through each word of the file using a loop. For each iteration of this loop, the program would create a temp integer variable \texttt{count} which would be equal to 0. Then we can check if the word we scan already exists in the map. If it doe, we set the temp variable to the current value associated with the word key. Then we can call the \texttt{put} method with the word and \texttt{++count} (this would set the count to 1 for new words or increment for existing words). Then we can use HashMap's \texttt{forEach} method to print each key and value pair. The runtime for this program is O(n).
+        
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
