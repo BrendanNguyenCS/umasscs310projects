@@ -14,12 +14,20 @@ public class WordUsage {
      */
     private int count;
 
-    // Constructors
+    /**
+     * Constructor
+     * @param word the word that was counted
+     * @param count the count
+     */
     public WordUsage(String word, int count) {
         this.word = word;
         this.count = count;
     }
 
+    /**
+     * Constructor
+     * @param word the word to count
+     */
     public WordUsage(String word) {
         this.word = word;
         this.count = 1;
@@ -29,29 +37,22 @@ public class WordUsage {
      * Getter for {@link #word}
      * @return the current word being tracked
      */
-    public String getWord() {
-        return this.word;
-    }
+    public String getWord() { return this.word; }
 
     /**
      * Getter for {@link #count}
      * @return this word's count
      */
-    public int getCount() {
-        return this.count;
-    }
+    public int getCount() { return this.count; }
+
     /**
      * Setter for {@link #count}
      * @param count the new count
      */
-    public void setCount(int count) {
-        this.count = count;
-    }
+    public void setCount(int count) { this.count = count; }
 
     /**
      * Increments the count for this word
      */
-    public void increment() {
-        this.count++;
-    }
+    public void increment() { this.count++; }
 }

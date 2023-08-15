@@ -30,16 +30,12 @@ public class DijkstraTieSP {
             if (e.weight() < 0)
                 throw new IllegalArgumentException("edge " + e + " has negative weight");
         }
-
         distTo = new double[G.V()];
         edgeTo = new DirectedEdge[G.V()];
-
         validateVertex(s);
-
         for (int v = 0; v < G.V(); v++)
             distTo[v] = Double.POSITIVE_INFINITY;
         distTo[s] = 0.0;
-
         // relax vertices in order of distance from s
         pq = new IndexMinPQ<>(G.V());
         pq.insert(s, distTo[s]);
@@ -48,7 +44,6 @@ public class DijkstraTieSP {
             for (DirectedEdge e : G.adj(v))
                 relax(e);
         }
-
         // check optimality conditions
         assert check(G, s);
     }
@@ -71,16 +66,12 @@ public class DijkstraTieSP {
         else if (distTo[w] == distTo[v] + e.weight()) {
             // get size of paths
             int countPathW = 0, countPathV = 0;
-            for (DirectedEdge d : pathTo(w)) {
+            for (DirectedEdge d : pathTo(w))
                 countPathW++;
-            }
-            for (DirectedEdge d : pathTo(v)) {
+            for (DirectedEdge d : pathTo(v))
                 countPathV++;
-            }
-
-            if (countPathW > countPathV) {
+            if (countPathW > countPathV)
                 edgeTo[w] = e;
-            }
         }
     }
 
@@ -117,11 +108,11 @@ public class DijkstraTieSP {
      */
     public Iterable<DirectedEdge> pathTo(int v) {
         validateVertex(v);
-        if (!hasPathTo(v)) return null;
+        if (!hasPathTo(v))
+            return null;
         Stack<DirectedEdge> path = new Stack<>();
-        for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()]) {
+        for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()])
             path.push(e);
-        }
         return path;
     }
 
@@ -136,7 +127,6 @@ public class DijkstraTieSP {
      * @return {@code true} if there is an optimal solution, {@code false} otherwise
      */
     private boolean check(EdgeWeightedDigraph G, int s) {
-
         // check that edge weights are non-negative
         for (DirectedEdge e : G.edges()) {
             if (e.weight() < 0) {
@@ -144,7 +134,6 @@ public class DijkstraTieSP {
                 return false;
             }
         }
-
         // check that distTo[v] and edgeTo[v] are consistent
         if (distTo[s] != 0.0 || edgeTo[s] != null) {
             System.err.println("distTo[s] and edgeTo[s] inconsistent");
@@ -157,7 +146,6 @@ public class DijkstraTieSP {
                 return false;
             }
         }
-
         // check that all edges e = v->w satisfy distTo[w] <= distTo[v] + e.weight()
         for (int v = 0; v < G.V(); v++) {
             for (DirectedEdge e : G.adj(v)) {
@@ -168,13 +156,14 @@ public class DijkstraTieSP {
                 }
             }
         }
-
         // check that all edges e = v->w on SPT satisfy distTo[w] == distTo[v] + e.weight()
         for (int w = 0; w < G.V(); w++) {
-            if (edgeTo[w] == null) continue;
+            if (edgeTo[w] == null)
+                continue;
             DirectedEdge e = edgeTo[w];
             int v = e.from();
-            if (w != e.to()) return false;
+            if (w != e.to())
+                return false;
             if (distTo[v] + e.weight() != distTo[w]) {
                 System.err.println("edge " + e + " on shortest path not tight");
                 return false;
@@ -207,28 +196,24 @@ public class DijkstraTieSP {
         for (int t = 0; t < G.V(); t++) {
             if (sp.hasPathTo(t)) {
                 StdOut.printf("%d to %d (%.2f)  ", s, t, sp.distTo(t));
-                for (DirectedEdge e : sp.pathTo(t)) {
+                for (DirectedEdge e : sp.pathTo(t))
                     StdOut.print(e + "   ");
-                }
                 StdOut.println();
             }
-            else {
+            else
                 StdOut.printf("%d to %d         no path\n", s, t);
-            }
         }
         System.out.println();
         // print shortest path for new DijkstraTieSP
         for (int t = 0; t < G.V(); t++) {
             if (sp2.hasPathTo(t)) {
                 StdOut.printf("%d to %d (%.2f)  ", s, t, sp2.distTo(t));
-                for (DirectedEdge e : sp2.pathTo(t)) {
+                for (DirectedEdge e : sp2.pathTo(t))
                     StdOut.print(e + "   ");
-                }
                 StdOut.println();
             }
-            else {
+            else
                 StdOut.printf("%d to %d         no path\n", s, t);
-            }
         }
     }
 }

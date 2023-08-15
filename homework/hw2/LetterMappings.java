@@ -21,7 +21,7 @@ public class LetterMappings {
      * @return the integer associated with the ASCII letter ('a' = 0, 'A' = 0, 'b' = 1, 'B' = 1, etc.)
      */
     public static int CharacterToNumber(char character) {
-        return (int)(Character.toLowerCase(character) - 'a');
+        return Character.toLowerCase(character) - 'a';
     }
 
     /**

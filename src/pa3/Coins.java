@@ -17,17 +17,17 @@ public class Coins {
      */
     private final HashMap<Integer, Integer> coinTree;
 
-    // Constructor
+    /**
+     * Constructor
+     * @param filename the file name
+     */
     public Coins(String filename) {
         In in = new In(filename);
         denominations = new ArrayList<>();
-        // the first int in the file is the amount
         amount = in.readInt();
-        // all other ints are the denominations
         int[] denos = in.readAllInts();
-        for (int d : denos) {
+        for (int d : denos)
             denominations.add(d);
-        }
         coinTree = new HashMap<>();
     }
 
@@ -35,17 +35,13 @@ public class Coins {
      * Getter for {@link #amount}
      * @return the amount needed to pay
      */
-    public int getAmount() {
-        return amount;
-    }
+    public int getAmount() { return amount; }
 
     /**
      * Getter for {@link #denominations}
      * @return the coin denominations
      */
-    public ArrayList<Integer> getDenominations() {
-        return denominations;
-    }
+    public ArrayList<Integer> getDenominations() { return denominations; }
 
     /**
      * Returns the minimum number of coins needed to pay the {@link #amount} by calling a private helper recursion method
@@ -55,26 +51,21 @@ public class Coins {
         int[] coinsUsed = new int[amount + 1];
         int[] lastCoin = new int[amount + 1];
         coinsUsed[0] = 0; lastCoin[0] = 1;
-
         for (int cents = 1; cents <= amount; cents++) {
             int minCoins = cents;
             int newCoin = 1;
-
             int differentCoins = denominations.size();
             for (int coin : denominations) {
-                if (coin > cents) {
+                if (coin > cents)
                     continue;
-                }
                 if (coinsUsed[cents - coin] + 1 < minCoins) {
                     minCoins = coinsUsed[cents - coin] + 1;
                     newCoin = coin;
                 }
             }
-
             coinsUsed[cents] = minCoins;
             lastCoin[cents] = newCoin;
         }
-
         backtrack(amount, lastCoin);
         return coinsUsed[amount];
     }
@@ -103,9 +94,7 @@ public class Coins {
      * @param coin the coin denomination
      * @return the number of coins for a denomination to get the amount
      */
-    public int howMany(int coin) {
-        return coinTree.get(coin) != null ? coinTree.get(coin) : 0;
-    }
+    public int howMany(int coin) { return coinTree.get(coin) != null ? coinTree.get(coin) : 0; }
 
     /**
      * Helper debugging method to view the contents of the tree
@@ -123,8 +112,8 @@ public class Coins {
         // Print out array contents
         c.printSolution();
         // Test output for coins.txt
-        //System.out.println("70 = " + c.howMany(70));
-        //System.out.println("34 = " + c.howMany(34));
+        System.out.println("70 = " + c.howMany(70));
+        System.out.println("34 = " + c.howMany(34));
         // Test output for coins2.txt
         System.out.println("1 = " + c.howMany(1));
         System.out.println("25 = " + c.howMany(25));

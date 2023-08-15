@@ -16,11 +16,11 @@ public class MysterySum {
      * @return the result
      */
     public static int mysterySum(int n) {
-        int i, j, s=0;
-        for(i=0; i < n; i++) {
-            for(j=0; j < i; j++) {
-                s += i*i;
-                System.out.println(s + "\t" + i*i);
+        int i, j, s = 0;
+        for(i = 0; i < n; i++) {
+            for(j = 0; j < i; j++) {
+                s += i * i;
+                System.out.println(s + "\t" + i * i);
             }
             System.out.println("------------------------");
         }

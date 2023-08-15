@@ -10,7 +10,12 @@ public class CombinationLock {
      */
     private int a, b, c;
 
-    // Constructor
+    /**
+     * Constructor
+     * @param a1 first number of lock
+     * @param a2 second number of lock
+     * @param a3 third number of lock
+     */
     public CombinationLock(int a1, int a2, int a3) {
         a = a1;
         b = a2;
@@ -24,9 +29,7 @@ public class CombinationLock {
      * @param z the third attempted number
      * @return {@code true} if the attempted combination matches the lock's combination, {@code false} otherwise
      */
-    public boolean open(int x, int y, int z) {
-        return x == a && y == b && z == c;
-    }
+    public boolean open(int x, int y, int z) { return x == a && y == b && z == c; }
 
     /**
      * Changes the lock's combination (old combination followed by new combination)

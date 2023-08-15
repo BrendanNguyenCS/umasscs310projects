@@ -20,39 +20,31 @@ public class MarkovModel {
      */
     private final TreeMap<String, Integer> substring2;
 
-    // Constructor
+    /**
+     * Constructor
+     * @param k the order of this model
+     * @param s the text to create the model
+     */
     public MarkovModel(int k, String s) {
-        // Initialize known fields
         this.k = k;
         substring1 = new TreeMap<>();
         substring2 = new TreeMap<>();
-        // create circular string to take into account combinations on the end
-        // of the strings
-        String circularString = s + s;
-        // A set to keep track of unique characters in the string
-        HashSet<Character> uniqueLtrs = new HashSet<>();
-        // get substrings and add to maps
-        for(int i = 0; i < s.length(); i++) {
-            // Add current character at index i to set
+        String circularString = s + s;                      // create circular string
+        HashSet<Character> uniqueLtrs = new HashSet<>();    // Keep track of unique characters in string
+        for(int i = 0; i < s.length(); i++) {               // get substrings and add to maps
             uniqueLtrs.add(s.charAt(i));
-            // size k substring
-            String shortString = circularString.substring(i, i + k);
-            // size k+1 substring
-            String longString = circularString.substring(i, i + k + 1);
-
+            String shortString = circularString.substring(i, i + k);        // size k substring
+            String longString = circularString.substring(i, i + k + 1);     // size k+1 substring
             // update if substring exists in map, add to map otherwise
-            if (substring1.containsKey(shortString)) {
+            if (substring1.containsKey(shortString))
                 substring1.replace(shortString, substring1.get(shortString) + 1);
-            } else {
+            else
                 substring1.put(shortString, 1);
-            }
-
             // update if substring exists in map, add to map otherwise
-            if (substring2.containsKey(longString)) {
+            if (substring2.containsKey(longString))
                 substring2.replace(longString, substring2.get(longString) + 1);
-            } else {
+            else
                 substring2.put(longString, 1);
-            }
         }
         S = uniqueLtrs.size();
     }
@@ -78,17 +70,13 @@ public class MarkovModel {
      * Getter for {@link #k}
      * @return the order of the Markov model
      */
-    public int getK() {
-        return k;
-    }
+    public int getK() { return k; }
 
     /**
      * Getter for {@link #S}
      * @return the size of the alphabet used to test substrings
      */
-    public int getS() {
-        return S;
-    }
+    public int getS() { return S; }
 
     /**
      * @return the string representation of the Markov model

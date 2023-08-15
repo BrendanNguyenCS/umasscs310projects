@@ -11,7 +11,6 @@ public class UniqueWords {
     public static void main(String[] args) {
         // read file from command line
         File file = new File(args[0]);
-
         // scan file and add to map
         Scanner reader;
         HashMap<String, String> map = new HashMap<>();
@@ -24,7 +23,6 @@ public class UniqueWords {
         } catch (FileNotFoundException e) {
             throw new RuntimeException("An error has occurred while scanning.", e);
         }
-
         // print all keys in map
         map.forEach((key, value) -> System.out.println(key));
     }

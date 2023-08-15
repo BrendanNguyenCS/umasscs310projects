@@ -11,10 +11,10 @@ public class LineUsage {
      */
     private final HashMap<String, Integer> lines;
 
-    // Constructor
-    public LineUsage() {
-        lines = new HashMap<>();
-    }
+    /**
+     * Constructor
+     */
+    public LineUsage() { lines = new HashMap<>(); }
 
     /**
      * Adds one sighting of a user on this line
@@ -22,12 +22,10 @@ public class LineUsage {
      */
     public void addObservation(String username) {
         // if username key exists, add 1 to existing count
-        if (lines.containsKey(username)) {
+        if (lines.containsKey(username))
             lines.put(username, lines.get(username) + 1);
-        } else {
-            // adds new user of terminal to map
+        else // adds new user of terminal to map
             lines.put(username, 1);
-        }
     }
 
     /**
@@ -38,18 +36,13 @@ public class LineUsage {
         // temp variables to keep track of the user with max usage
         int maxCount = 0;
         String maxUser = "NONE";
-
-        // check each user in lines
         for(String user : lines.keySet()) {
-            // if the user's count is greater than the current max,
-            // update temp variables with new user
             if (lines.get(user) > maxCount) {
+                // update temp variables with new user
                 maxCount = lines.get(user);
                 maxUser = user;
             }
         }
-
-        // return max user with temp variables
         return new Usage(maxUser, maxCount);
     }
 }
