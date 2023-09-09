@@ -27,19 +27,23 @@ public class Usage {
      * Getter for {@link #count}
      * @return the number of times this user has been seen on this line
      */
-    public int getCount() { return this.count; }
+    public int getCount() {
+        return this.count;
+    }
 
     /**
      * Setter for {@link #count}
      * @param x the new count
      */
-    public void setCount(int x) { count = x; }
+    public void setCount(int x) {
+        count = x;
+    }
 
     /**
      * Getter for {@link #user}
      * @return the username for this user
      */
-    public String getUser() { return this.user; }
-
-
+    public String getUser() {
+        return this.user;
+    }
 }

@@ -24,7 +24,8 @@ public class ReverseFile {
             throw new RuntimeException("An error has occurred while scanning.", e);
         }
         // Print lines in reverse
-        for(int i = lines.size() - 1; i >= 0; i--)
+        for(int i = lines.size() - 1; i >= 0; i--) {
             System.out.println(lines.get(i));
+        }
     }
 }

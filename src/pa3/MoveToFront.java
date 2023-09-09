@@ -48,17 +48,19 @@ public class MoveToFront {
      */
     private static LinkedList<Character> initList() {
         LinkedList<Character> list = new LinkedList<>();
-        for (char c = 0; c < 256; c++)
+        for (char c = 0; c < 256; c++) {
             list.add(c);
+        }
         return list;
     }
 
     public static void main(String[] args) {
-        if (args[0].equals("-"))
+        if (args[0].equals("-")) {
             encode(args[1]);
-        else if (args[0].equals("+"))
+        } else if (args[0].equals("+")) {
             decode(args[1]);
-        else
+        } else {
             throw new IllegalArgumentException("That is not a valid operation.");
+        }
     }
 }

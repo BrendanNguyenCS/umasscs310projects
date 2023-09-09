@@ -9,9 +9,7 @@ import java.util.*;
  */
 public class UniqueWords {
     public static void main(String[] args) {
-        // read file from command line
         File file = new File(args[0]);
-        // scan file and add to map
         Scanner reader;
         HashMap<String, String> map = new HashMap<>();
         try {

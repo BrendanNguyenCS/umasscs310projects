@@ -14,18 +14,20 @@ public class LineUsage {
     /**
      * Constructor
      */
-    public LineUsage() { lines = new HashMap<>(); }
+    public LineUsage() {
+        lines = new HashMap<>();
+    }
 
     /**
      * Adds one sighting of a user on this line
      * @param username the user sighting to be added to this line
      */
     public void addObservation(String username) {
-        // if username key exists, add 1 to existing count
-        if (lines.containsKey(username))
+        if (lines.containsKey(username)) {
             lines.put(username, lines.get(username) + 1);
-        else // adds new user of terminal to map
+        } else {
             lines.put(username, 1);
+        }
     }
 
     /**
@@ -38,7 +40,6 @@ public class LineUsage {
         String maxUser = "NONE";
         for(String user : lines.keySet()) {
             if (lines.get(user) > maxCount) {
-                // update temp variables with new user
                 maxCount = lines.get(user);
                 maxUser = user;
             }

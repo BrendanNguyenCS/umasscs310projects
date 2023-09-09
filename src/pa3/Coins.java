@@ -26,8 +26,9 @@ public class Coins {
         denominations = new ArrayList<>();
         amount = in.readInt();
         int[] denos = in.readAllInts();
-        for (int d : denos)
+        for (int d : denos) {
             denominations.add(d);
+        }
         coinTree = new HashMap<>();
     }
 
@@ -35,13 +36,17 @@ public class Coins {
      * Getter for {@link #amount}
      * @return the amount needed to pay
      */
-    public int getAmount() { return amount; }
+    public int getAmount() {
+        return amount;
+    }
 
     /**
      * Getter for {@link #denominations}
      * @return the coin denominations
      */
-    public ArrayList<Integer> getDenominations() { return denominations; }
+    public ArrayList<Integer> getDenominations() {
+        return denominations;
+    }
 
     /**
      * Returns the minimum number of coins needed to pay the {@link #amount} by calling a private helper recursion method
@@ -56,8 +61,9 @@ public class Coins {
             int newCoin = 1;
             int differentCoins = denominations.size();
             for (int coin : denominations) {
-                if (coin > cents)
+                if (coin > cents) {
                     continue;
+                }
                 if (coinsUsed[cents - coin] + 1 < minCoins) {
                     minCoins = coinsUsed[cents - coin] + 1;
                     newCoin = coin;
@@ -77,8 +83,9 @@ public class Coins {
      */
     private void backtrack(int amount, int[] lastCoin) {
         // Keeps track of how many coins each
-        for (int coin : denominations)
+        for (int coin : denominations) {
             coinTree.put(coin, 0);
+        }
         // Backtrack
         int s = amount;
         while (s > 0) {
@@ -94,7 +101,9 @@ public class Coins {
      * @param coin the coin denomination
      * @return the number of coins for a denomination to get the amount
      */
-    public int howMany(int coin) { return coinTree.get(coin) != null ? coinTree.get(coin) : 0; }
+    public int howMany(int coin) {
+        return coinTree.get(coin) != null ? coinTree.get(coin) : 0;
+    }
 
     /**
      * Helper debugging method to view the contents of the tree
@@ -107,13 +116,13 @@ public class Coins {
 
     public static void main(String[] args) {
         Coins c = new Coins(args[0]);
-        // Print out min coins
-        System.out.println(c.makeChange());
-        // Print out array contents
-        c.printSolution();
+        System.out.println(c.makeChange());                     // Print out min coins
+        c.printSolution();                                      // Print out array contents
+
         // Test output for coins.txt
         System.out.println("70 = " + c.howMany(70));
         System.out.println("34 = " + c.howMany(34));
+
         // Test output for coins2.txt
         System.out.println("1 = " + c.howMany(1));
         System.out.println("25 = " + c.howMany(25));

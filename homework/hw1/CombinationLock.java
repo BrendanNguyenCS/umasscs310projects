@@ -29,7 +29,9 @@ public class CombinationLock {
      * @param z the third attempted number
      * @return {@code true} if the attempted combination matches the lock's combination, {@code false} otherwise
      */
-    public boolean open(int x, int y, int z) { return x == a && y == b && z == c; }
+    public boolean open(int x, int y, int z) {
+        return x == a && y == b && z == c;
+    }
 
     /**
      * Changes the lock's combination (old combination followed by new combination)

@@ -33,19 +33,25 @@ public class BestModel{
      * Getter for {@link #model1}
      * @return the first training Markov model
      */
-    public MarkovModel getModel1() { return model1; }
+    public MarkovModel getModel1() {
+        return model1;
+    }
 
     /**
      * Getter for {@link #model2}
      * @return the second training Markov model
      */
-    public MarkovModel getModel2() { return model2; }
+    public MarkovModel getModel2() {
+        return model2;
+    }
 
     /**
      * Getter for {@link #order}
      * @return the order of the Markov models
      */
-    public int getOrder() { return order; }
+    public int getOrder() {
+        return order;
+    }
 
     /**
      * Calculates and prints out the total log likelihoods
@@ -121,7 +127,9 @@ public class BestModel{
          * Getter for {@link #logDifference}
          * @return the difference between the log likelihoods
          */
-        public double logDifference() { return logDifference; }
+        public double logDifference() {
+            return logDifference;
+        }
 
         /**
          * Compares the log differences of this and another {@link DiffModel DiffModel}
@@ -139,8 +147,9 @@ public class BestModel{
          * @return {@code true} if the log differences are equal, {@code false} otherwise
          */
         public boolean equals (DiffModel other) {
-            if (other == null)
+            if (other == null) {
                 return false;
+            }
             return this.logDifference() == other.logDifference();
         }
 

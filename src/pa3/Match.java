@@ -14,8 +14,9 @@ public class Match {
      * @return the {@link Path} object which represents the optimal sequence alignment
      */
     public Path match(String a, String b) {
-        if (a == null || b == null || a.length() == 0 || b.length() == 0)
+        if (a == null || b == null || a.isEmpty() || b.isEmpty()) {
             return null;
+        }
         int gapPenalty = 2, length = a.length(), width = b.length();
         // Finding one more row and column to check to boundaries
         Path[][] opt = new Path[length + 1][width + 1];
@@ -50,12 +51,10 @@ public class Match {
                 if (min == val1) {
                     opt[i][j].setCost(val1);
                     opt[i][j].setNext(opt[i + 1][j + 1]);
-                }
-                else if (min == val2) {
+                } else if (min == val2) {
                     opt[i][j].setCost(val2);
                     opt[i][j].setNext(opt[i + 1][j]);
-                }
-                else if (min == val3) {
+                } else if (min == val3) {
                     opt[i][j].setCost(val3);
                     opt[i][j].setNext(opt[i][j + 1]);
                 }

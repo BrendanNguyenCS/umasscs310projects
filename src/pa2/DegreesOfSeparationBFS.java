@@ -35,13 +35,17 @@ public class DegreesOfSeparationBFS {
      * Getter for {@link #sg}
      * @return the symbol graph used as a reference for the Bacon graph
      */
-    public SymbolGraph getSymbolGraph() { return sg; }
+    public SymbolGraph getSymbolGraph() {
+        return sg;
+    }
 
     /**
      * Getter for {@link #bfs}
      * @return the object used to find the breadth-first search paths from the source
      */
-    public BreadthFirstPaths getBreadthFirstPaths() { return bfs; }
+    public BreadthFirstPaths getBreadthFirstPaths() {
+        return bfs;
+    }
 
     /**
      * Returns the actor's Bacon relationship number
@@ -49,12 +53,14 @@ public class DegreesOfSeparationBFS {
      * @return the bacon number
      */
     public int baconNumber(String sink) {
-        if (!sg.contains(sink))                     // if the actor isn't listed
+        if (!sg.contains(sink)) {                   // if the actor isn't listed
             return -1;
+        }
         int sinkIndex = sg.indexOf(sink);
-        if (!bfs.hasPathTo(sinkIndex))              // no connection between the source and sink
+        if (!bfs.hasPathTo(sinkIndex)) {            // no connection between the source and sink
             return -1;
-        return bfs.distTo(sinkIndex)/2;
+        }
+        return bfs.distTo(sinkIndex) / 2;
     }
 
     /**
@@ -65,17 +71,19 @@ public class DegreesOfSeparationBFS {
     public Stack<Integer> graphPath(String sink){
         Stack<Integer> path = new Stack<>();
         int sinkIndex = sg.indexOf(sink);
-        for (int g : bfs.pathTo(sinkIndex))         // Add each part of the path between the actors to path stack
+        for (int g : bfs.pathTo(sinkIndex)) {      // Add each part of the path between the actors to path stack
             path.push(g);
+        }
         return path;
     }
 
     /**
-     * Prints the string representation of the path between two actors
+     * Prints the string representation of the path between two actors.
+     * <p>
+     * Note that every other vertex in the stack is an actor with the vertex between them is a movie.
      * @param path the path
      */
     public void printPath(Stack<Integer> path){
-        // Now print. Every other vertex is an actor
         String actor = sg.nameOf(path.pop());
         System.out.println(actor + " has a Bacon number of " + baconNumber(actor));
         while (!path.isEmpty()) {                   // Print out the path that connects the actor to Bacon
@@ -99,12 +107,15 @@ public class DegreesOfSeparationBFS {
             int bacon = Math.min(MAX_BACON, bfs.distTo(v));
             hist[bacon]++;
             // to print actors and movies with large bacon numbers
-            if (bacon/2 >= 7 && bacon < MAX_BACON)
-                StdOut.printf("%d %s\n", bacon/2, sg.nameOf(v));
+            if (bacon/2 >= 7 && bacon < MAX_BACON) {
+                StdOut.printf("%d %s\n", bacon / 2, sg.nameOf(v));
+            }
         }
         // print out histogram - even indices are actors
         for (int i = 0; i < MAX_BACON; i += 2) {
-            if (hist[i] == 0) break;
+            if (hist[i] == 0) {
+                break;
+            }
             StdOut.printf("%3d %8d\n", i/2, hist[i]);
         }
         StdOut.printf("Inf %8d\n", hist[MAX_BACON]);
