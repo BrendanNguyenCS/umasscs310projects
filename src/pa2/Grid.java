@@ -37,9 +37,10 @@ public class Grid {
 
     /**
      * Print out all {@link Spot}s in all groups in this grid
+     * <p>
+     * Used for testing
      */
-    public void printAllGroups()
-    {
+    public void printAllGroups() {
         for(Set<Spot> g:allGroups) {
             for(Spot s:g)
                 System.out.println(s);
@@ -138,8 +139,7 @@ public class Grid {
         // Stop if current square is not in a group or is already in the current group
         if (!grid[i][j] || group.contains(new Spot(i, j)) || allSpots.contains(new Spot(i, j))) {
             // do nothing
-        }
-        else {
+        } else {
             // Add current square to group and allSpots
             Spot s = new Spot(i, j);
             s.setGroup(count);

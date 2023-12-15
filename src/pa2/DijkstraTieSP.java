@@ -2,6 +2,8 @@ package pa2;
 
 import edu.princeton.cs.algs4.*;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class DijkstraTieSP {
     /**
      * Array which holds the distances of vertices to the source
@@ -69,14 +71,11 @@ public class DijkstraTieSP {
         // if they are equal
         else if (distTo[w] == distTo[v] + e.weight()) {
             // get size of paths
-            int countPathW = 0, countPathV = 0;
-            for (DirectedEdge d : pathTo(w)) {
-                countPathW++;
-            }
-            for (DirectedEdge d : pathTo(v)) {
-                countPathV++;
-            }
-            if (countPathW > countPathV) {
+            AtomicInteger countPathW = new AtomicInteger();
+            AtomicInteger countPathV = new AtomicInteger();
+            pathTo(w).forEach(d -> countPathW.getAndIncrement());
+            pathTo(v).forEach(d -> countPathV.getAndIncrement());
+            if (countPathW.get() > countPathV.get()) {
                 edgeTo[w] = e;
             }
         }

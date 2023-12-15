@@ -59,7 +59,6 @@ public class Coins {
         for (int cents = 1; cents <= amount; cents++) {
             int minCoins = cents;
             int newCoin = 1;
-            int differentCoins = denominations.size();
             for (int coin : denominations) {
                 if (coin > cents) {
                     continue;

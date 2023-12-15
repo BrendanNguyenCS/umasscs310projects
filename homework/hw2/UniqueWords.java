@@ -14,7 +14,7 @@ public class UniqueWords {
         HashMap<String, String> map = new HashMap<>();
         try {
             reader = new Scanner(file);
-            while(reader.hasNext()) {
+            while (reader.hasNext()) {
                 String word = reader.next();
                 map.putIfAbsent(word, "");
             }
