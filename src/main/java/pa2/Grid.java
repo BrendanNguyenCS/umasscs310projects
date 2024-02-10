@@ -8,7 +8,7 @@ import java.util.*;
 public class Grid {
     /**
      * The grid which specifies where spots are
-     * all {@link Spot Spot}s are defined as {@code true} in the grid, {@code false} values are not a Spot
+     * all {@link Spot Spots} are defined as {@code true} in the grid, {@code false} values are not a Spot
      */
     private final boolean[][] grid;
     /**
@@ -26,7 +26,7 @@ public class Grid {
 
     /**
      * Constructor
-     * @param ingrid a 2D array of {@link Boolean}s to be used as the grid to search
+     * @param ingrid a 2D array of {@link Boolean Booleans} to be used as the grid to search
      */
     public Grid(boolean[][] ingrid) {
         grid = ingrid;
@@ -50,7 +50,7 @@ public class Grid {
 
     /**
      * Calculate all groups in the grid
-     * @return the {@link ArrayList} of {@link Set}s of {@link Spot Spot}s signifying all groups that exist in this grid
+     * @return the {@link ArrayList} of {@link Set Sets} of {@link Spot Spots} signifying all groups that exist in this grid
      */
     public ArrayList<Set<Spot>> calcAllGroups() {
         HashSet<Spot> spotsTraversed = new HashSet<>(); // a set to keep track of spots already traversed
@@ -96,7 +96,7 @@ public class Grid {
     }
 
     /**
-     * The recursive method that fills the set of the {@link Spot Spot}s in the group. This will be called by
+     * The recursive method that fills the set of the {@link Spot Spots} in the group. This will be called by
      * {@link #groupSize(int, int) groupSize()} to get the current group's size
      * @param i the current row in the grid
      * @param j the current column in the grid
@@ -125,12 +125,12 @@ public class Grid {
     /**
      * This private recursive method utilized by {@link #calcAllGroups()} populates the current group and the set that
      * defines all the spots that have been visited. It also adds the known group size of the current group to all
-     * {@link Spot Spot}s
+     * {@link Spot Spots}
      * @param i the current row position in the grid
      * @param j the current column position in the grid
      * @param count the current group's group size
      * @param group the {@link Set} that defines the current group
-     * @param allSpots the {@link Set} that defines all {@link Spot Spot}s that are already in a group
+     * @param allSpots the {@link Set} that defines all {@link Spot Spots} that are already in a group
      */
     private void getGroup(int i, int j, int count, Set<Spot> group, Set<Spot> allSpots) {
         // Checking if i,j coordinates are out of bounds

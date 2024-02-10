@@ -1,4 +1,4 @@
-package hw1;
+package homework.hw1;
 
 /**
  * A class that simulates a combination lock<br>

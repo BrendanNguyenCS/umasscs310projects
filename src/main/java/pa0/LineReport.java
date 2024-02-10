@@ -29,7 +29,7 @@ public class LineReport {
         Scanner reader;
         try {
             reader = new Scanner(file);
-            while(reader.hasNextLine()) {
+            while (reader.hasNextLine()) {
                 String line = reader.nextLine();
                 String[] parts = line.split(" ");
                 int lineNumber = Integer.parseInt(parts[0]);
@@ -46,7 +46,7 @@ public class LineReport {
      */
     void generateReport() {
         System.out.println("Terminal\tMost Common User\tCount");
-        for(int i = 1; i < lines.length; i++) {
+        for (int i = 1; i < lines.length; i++) {
             Usage user = lines[i].findMaxUsage();
             System.out.println(i + "\t" + user.getUser() + "\t" + user.getCount());
         }

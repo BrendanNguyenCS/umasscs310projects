@@ -33,7 +33,7 @@ public class MoveToFront {
         BinaryIn in = new BinaryIn(f);
         BinaryOut out = new BinaryOut();
         LinkedList<Character> decode = initList();
-        while(!in.isEmpty()) {
+        while (!in.isEmpty()) {
             int index = in.readChar();
             char c = decode.remove(index);
             out.write(c);

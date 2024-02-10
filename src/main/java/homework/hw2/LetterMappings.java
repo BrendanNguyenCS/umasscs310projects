@@ -1,4 +1,4 @@
-package hw2;
+package homework.hw2;
 
 /**
  * A class for the ASCII letter mappings<br>
@@ -9,13 +9,18 @@ public class LetterMappings {
         int letter = CharacterToNumber('b');
         System.out.println(letter);
         int result = StringToNumber("aa");
-        System.out.println(result);
+        System.out.println("aa = " + result);
         String string = NumberToString(result);
-        System.out.println(string);
+        System.out.println(result + " = " + string);
+        System.out.println(69 + " = " + NumberToString(69));
+        System.out.println("cr = " + StringToNumber("cr"));
+        System.out.println("brz = " + StringToNumber("brz"));
+        System.out.println("aqe = " + StringToNumber("qe"));
     }
 
     /**
-     * Part A<br>
+     * Part A
+     * <p>
      * Returns the number associated with the given character
      * @param character the character to translate to an integer
      * @return the integer associated with the ASCII letter ('a' = 0, 'A' = 0, 'b' = 1, 'B' = 1, etc.)
@@ -25,18 +30,24 @@ public class LetterMappings {
     }
 
     /**
-     * Part B<br>
+     * Part B
+     * <p>
      * Returns a number associated with a sequence of characters
      * @param sequence the character sequence to translate
      * @return the integer of the translated sequence
      */
     public static int StringToNumber(String sequence) {
         char[] letters = sequence.toCharArray();
-        return 26 * ((int)(letters[0]) - 'a') + (letters[1] - 'a');
+        int result = 0;
+        for (int i = 0; i < letters.length; i++) {
+            result += (int) (Math.pow(26, letters.length - 1 - i) * (letters[i] - 'a'));
+        }
+        return result;
     }
 
     /**
-     * Part C<br>
+     * Part C
+     * <p>
      * Returns the ASCII character sequence for the given number
      * @param num the integer to translate to string
      * @return the character sequence

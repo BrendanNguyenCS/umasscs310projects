@@ -1,4 +1,4 @@
-package hw1;
+package homework.hw1;
 
 /**
  * A class to track the number of times a word is used in a certain text<br>

@@ -38,7 +38,7 @@ public class LineUsage {
         // temp variables to keep track of the user with max usage
         int maxCount = 0;
         String maxUser = "NONE";
-        for(String user : lines.keySet()) {
+        for (String user : lines.keySet()) {
             if (lines.get(user) > maxCount) {
                 maxCount = lines.get(user);
                 maxUser = user;

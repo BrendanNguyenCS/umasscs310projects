@@ -12,11 +12,11 @@ public class MarkovModel {
      */
     private final int S;
     /**
-     * The map of substrings of size k
+     * The map of substrings of size {@code k}
      */
     private final TreeMap<String, Integer> substring1;
     /**
-     * The map of substrings of size k+1
+     * The map of substrings of size {@code k+1}
      */
     private final TreeMap<String, Integer> substring2;
 

@@ -142,7 +142,7 @@ public class BestModel{
         }
 
         /**
-         * Checks for equality of the log differences of two {@link DiffModel DiffModel}s
+         * Checks for equality of the log differences of two {@link DiffModel DiffModels}
          * @param other the object to be checked against
          * @return {@code true} if the log differences are equal, {@code false} otherwise
          */

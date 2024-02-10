@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.*;
 
 /**
  *  The {@code DegreesOfSeparationBFS} class is a modified implementation
- *  of Robert Sedgewick and Kevin Wayne's algs4 class {@code DegreesOfSeparation}.
+ *  of Robert Sedgewick and Kevin Wayne's algs4 class {@link DegreesOfSeparation}.
  *  This class gets an actor's Bacon number and the path between an actor
  *  and the source actor.
  *  @author Brendan Nguyen

@@ -1,7 +1,6 @@
 package pa2;
 
 import edu.princeton.cs.algs4.*;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class DijkstraTieSP {
@@ -85,7 +84,7 @@ public class DijkstraTieSP {
      * Returns the length of a shortest path from the source vertex {@code s} to vertex {@code v}.
      * @param  v the destination vertex
      * @return the length of a shortest path from the source vertex {@code s} to vertex {@code v};
-     *         {@code Double.POSITIVE_INFINITY} if no such path
+     *         {@link Double#POSITIVE_INFINITY} if no such path
      * @throws IllegalArgumentException unless {@code 0 <= v < V}
      */
     public double distTo(int v) {
