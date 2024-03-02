@@ -46,4 +46,12 @@ public class LineUsage {
         }
         return new Usage(maxUser, maxCount);
     }
+
+    /**
+     * Getter for {@link #lines}
+     * @return the map that encapsulates the data for this line
+     */
+    public HashMap<String, Integer> getLines() {
+        return lines;
+    }
 }

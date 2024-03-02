@@ -112,18 +112,4 @@ public class Coins {
         System.out.println("For " + amount + " We use " + makeChange() + " coins as follows:");
         System.out.println(coinTree);
     }
-
-    public static void main(String[] args) {
-        Coins c = new Coins(args[0]);
-        System.out.println(c.makeChange());                     // Print out min coins
-        c.printSolution();                                      // Print out array contents
-
-        // Test output for coins.txt
-        System.out.println("70 = " + c.howMany(70));
-        System.out.println("34 = " + c.howMany(34));
-
-        // Test output for coins2.txt
-        System.out.println("1 = " + c.howMany(1));
-        System.out.println("25 = " + c.howMany(25));
-    }
 }

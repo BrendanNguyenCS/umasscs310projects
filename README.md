@@ -1,6 +1,9 @@
 # UMass Boston CS310 (Advanced Algorithms)
 This is a remote repository for all my CS310 class projects and other associated files. This repository contains my solutions for each of the programming assignments (PAs) and homework assignments. View at your own discretion as answers may not be correct.
 
+### Note:
+The file structure of this repository has been modified since its creation. This project now uses Maven as the framework. The following instructions should still work, but the most optimal way to run this code is using the internal run commands in the IntelliJ IDEA IDE. This decision was made in order to be able to create unit tests, similar to commercial software development.
+
 ## Compiling the Code
 In order to compile the code, `cd` to the src folder (or where the root of your source code is) and run the following command. This example compiles code from PA1.
 
